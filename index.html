@@ -783,6 +783,116 @@
   .amount-prefix input {
     padding-left: 1.8rem !important;
   }
+
+  /* QR DIALOG */
+  .qr-dialog-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .qr-dialog-box::-webkit-scrollbar { width: 4px; }
+  .qr-dialog-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .qr-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .qr-header .big-emoji { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+  .qr-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+    background: linear-gradient(135deg, #f0c040, #e07020);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .qr-header p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .qr-confirmation-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.83rem;
+    color: var(--verified);
+    line-height: 1.5;
+  }
+  .qr-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  @media(max-width:480px) { .qr-cards-grid { grid-template-columns: 1fr; } }
+  .qr-dialog-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: border-color 0.2s;
+  }
+  .qr-dialog-card:hover { border-color: rgba(240,192,64,0.4); }
+  .qr-img-wrap {
+    width: 140px; height: 140px;
+    background: #fff;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .qr-img-wrap img { width: 100%; height: 100%; object-fit: contain; }
+  .qr-dialog-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .qr-dialog-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .qr-disclaimer {
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+  .qr-close-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #f0c040, #e07020);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s;
+  }
+  .qr-close-btn:hover { opacity: 0.88; }
 </style>
 </head>
 <body>
@@ -839,23 +949,6 @@
     </div>
   </div>
 
-  <!-- QR CODES -->
-  <div class="qr-section">
-    <h2 class="section-title">Send a Gift 🎁</h2>
-    <p class="section-sub">Any amount is deeply, sincerely, wholeheartedly appreciated. No pressure though. (pressure)</p>
-    <div class="qr-grid">
-      <div class="qr-card">
-        <div class="qr-placeholder">📱</div>
-        <div class="qr-label">GCash</div>
-        <div class="qr-hint">Scan to send via GCash.<br>Replace this placeholder with your actual QR.</div>
-      </div>
-      <div class="qr-card">
-        <div class="qr-placeholder">🏦</div>
-        <div class="qr-label">Bank Transfer</div>
-        <div class="qr-hint">Scan to send via bank.<br>Replace this placeholder with your actual QR.</div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- ===== GALLERY PAGE ===== -->
@@ -995,12 +1088,63 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<!-- ===== QR CODE DIALOG ===== -->
+<div class="dialog-overlay" id="qr-dialog">
+  <div class="qr-dialog-box">
+    <div class="qr-header">
+      <span class="big-emoji">🎉</span>
+      <h2>Thank You So Much!</h2>
+      <p>Your form has been saved! If you'd like to send a gift, here are Jeremee's payment QR codes. Scan away! 😄</p>
+    </div>
+
+    <div class="qr-confirmation-badge">
+      ✅ &nbsp;<span>Your answers and donation details have been recorded. A confirmation email is on its way!</span>
+    </div>
+
+    <div class="qr-cards-grid">
+      <!-- GCash QR -->
+      <div class="qr-dialog-card">
+        <div class="qr-img-wrap" id="qr-gcash-wrap">
+          <!-- 🔧 REPLACE: set src to your actual GCash QR image -->
+          <!-- e.g. <img src="qr-gcash.png" alt="GCash QR"/> -->
+          <!-- or upload to ImgBB and use that URL -->
+          <span>📱</span>
+        </div>
+        <div class="qr-dialog-label">GCash</div>
+        <div class="qr-dialog-hint">Open GCash → Scan QR<br/>Any amount welcome 💛</div>
+      </div>
+
+      <!-- Bank Transfer QR -->
+      <div class="qr-dialog-card">
+        <div class="qr-img-wrap" id="qr-bank-wrap">
+          <!-- 🔧 REPLACE: set src to your actual Bank QR image -->
+          <!-- e.g. <img src="qr-bank.png" alt="Bank QR"/> -->
+          <span>🏦</span>
+        </div>
+        <div class="qr-dialog-label">Bank Transfer</div>
+        <div class="qr-dialog-hint">Open your banking app<br/>Scan to transfer 💛</div>
+      </div>
+    </div>
+
+    <div class="qr-disclaimer">
+      🙏 This is <strong>not a requirement</strong> — just a gentle reminder that it's Jeremee's birthday!
+      Thank you for your cooperation and <strong>Be Safe Always.</strong>
+    </div>
+
+    <button class="qr-close-btn" onclick="closeQrDialog()">Done — Thanks for celebrating with Jeremee! 🎂</button>
+  </div>
+</div>
+
+<!-- emailjs bridge: make it accessible inside ES module scope -->
+<script>window.__emailjs = emailjs;</script>
+
 <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const ejs = window.__emailjs; // use bridged emailjs inside module
 
   // =============================================
   // 🔧 REPLACE WITH YOUR FIREBASE CONFIG BELOW
@@ -1018,9 +1162,16 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  const storage = getStorage(app);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+
+  // =============================================
+  // 🖼️ IMGBB CONFIG
+  // Get your free API key at https://imgbb.com
+  // Account → Settings → API → Add API Key
+  // =============================================
+  const IMGBB_API_KEY = "289dc066edbe15b7103ac08aebf61ea3"; // 🔧 replace this
+  // =============================================
 
   // =============================================
   // 📧 EMAILJS CONFIG — replace with your values
@@ -1033,7 +1184,7 @@
   const JEREMEE_EMAIL         = "caydejeremee@gmail.com";  // Jeremee's email
   // =============================================
 
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+  ejs.init(EMAILJS_PUBLIC_KEY);
 
   let currentUser = null;
   let selectedFile = null;
@@ -1053,7 +1204,7 @@
     // Thank-you to sender (only if they gave an email)
     if (email) {
       sends.push(
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, {
+        ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, {
           ...params,
           to_email: email,
           to_name:  name,
@@ -1063,7 +1214,7 @@
     }
     // Notification to Jeremee
     sends.push(
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, {
+      ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, {
         ...params,
         to_email:   JEREMEE_EMAIL,
         to_name:    'Jeremee',
@@ -1084,7 +1235,7 @@
     const sends = [];
     if (email) {
       sends.push(
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, {
+        ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, {
           ...params,
           to_email: email,
           to_name:  uploader,
@@ -1093,7 +1244,7 @@
       );
     }
     sends.push(
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, {
+      ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, {
         ...params,
         to_email:   JEREMEE_EMAIL,
         to_name:    'Jeremee',
@@ -1245,6 +1396,22 @@
     dotEls[slideIndex]?.classList.add('active');
   };
 
+  // ---- IMGBB UPLOAD HELPER ----
+  async function uploadToImgBB(file) {
+    if (IMGBB_API_KEY === 'YOUR_IMGBB_API_KEY') {
+      throw new Error('ImgBB API key not set. Get yours free at https://imgbb.com');
+    }
+    const formData = new FormData();
+    formData.append('image', file);
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error?.message || 'ImgBB upload failed');
+    return data.data.url; // permanent direct image URL
+  }
+
   // ---- GALLERY UPLOAD ----
   window.onFileSelected = (e) => {
     const file = e.target.files[0];
@@ -1271,25 +1438,38 @@
     if (!msg) { showToast("Please add a short message!"); return; }
     const uploader = document.getElementById('gallery-uploader').value.trim() || (currentUser?.displayName || 'Anonymous');
     const email    = document.getElementById('gallery-email').value.trim() || (currentUser?.email || '');
-    showToast("Uploading... ⏳");
+
+    // Validate file size (5MB max)
+    if (selectedFile.size > 5 * 1024 * 1024) {
+      showToast("Photo must be under 5MB! 📷"); return;
+    }
+
+    showToast("Uploading photo... ⏳");
     try {
-      const storageRef = ref(storage, `gallery/${Date.now()}_${selectedFile.name}`);
-      await uploadBytes(storageRef, selectedFile);
-      const url = await getDownloadURL(storageRef);
+      // 1. Upload image to ImgBB
+      const imageUrl = await uploadToImgBB(selectedFile);
+
+      // 2. Save metadata to Firestore
       await addDoc(collection(db, 'gallery'), {
-        imageUrl: url,
+        imageUrl,
         uploader,
         message: msg,
         verified: !!currentUser,
         timestamp: serverTimestamp()
       });
-      // Send thank-you emails
+
+      // 3. Send thank-you emails
       sendGalleryEmails({ uploader, email });
+
       showToast("Photo uploaded! 🎉 A thank-you email is on its way!");
       cancelUpload();
     } catch(e) {
       console.error(e);
-      showToast("Upload failed. Check Firebase config.");
+      if (e.message.includes('ImgBB API key')) {
+        showToast("⚠️ ImgBB API key not configured yet!");
+      } else {
+        showToast("Upload failed: " + e.message);
+      }
     }
   };
 
@@ -1301,6 +1481,9 @@
   };
   window.closeDonationDialog = () => {
     document.getElementById('donation-dialog').classList.remove('open');
+  };
+  window.closeQrDialog = () => {
+    document.getElementById('qr-dialog').classList.remove('open');
   };
   window.toggleDonationFields = () => {
     const checked = document.getElementById('donate-checkbox').checked;
@@ -1321,24 +1504,31 @@
           verified: !!currentUser,
           timestamp: serverTimestamp()
         });
-        // Send confirmation + notification emails
         sendDonationEmails({ name, email, amount, message: msg });
-        showToast(`Thank you ${name}! Gift of ₱${amount.toFixed(2)} recorded. Check your email! 💛`);
       } catch(e) { console.error(e); showToast("Error saving donation. Check Firebase config."); return; }
-    } else {
-      showToast("Your wishes have been saved! Thank you! 🎂");
     }
+
+    // ✅ Always close donation dialog and open QR dialog as final step
     closeDonationDialog();
+
+    // Reset donation fields
     document.getElementById('donate-checkbox').checked = false;
     document.getElementById('donation-fields').classList.remove('show');
     document.getElementById('donate-amount').value = '';
     document.getElementById('donate-email').value = '';
     document.getElementById('donate-msg').value = '';
     document.getElementById('donate-name').value = '';
+
+    // Reset form answers
     document.getElementById('q1').value = '';
     document.getElementById('q2').value = '';
     document.getElementById('q3').value = '';
     document.getElementById('q4').value = '';
+
+    // 🎉 Show QR codes as the final confirmation screen
+    setTimeout(() => {
+      document.getElementById('qr-dialog').classList.add('open');
+    }, 300); // small delay so donation dialog closes smoothly first
   };
 
   // ---- HELPERS ----
@@ -1379,9 +1569,12 @@
     }
   });
 
-  // Close dialog on overlay click
+  // Close dialogs on overlay click
   document.getElementById('donation-dialog').addEventListener('click', function(e) {
     if (e.target === this) closeDonationDialog();
+  });
+  document.getElementById('qr-dialog').addEventListener('click', function(e) {
+    if (e.target === this) closeQrDialog();
   });
 </script>
 
