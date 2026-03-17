@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Jeremee Cayde 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --card: #161616;
+    --border: #2a2a2a;
+    --accent: #f0c040;
+    --accent2: #e07020;
+    --text: #f0ede8;
+    --muted: #888;
+    --verified: #4ade80;
+    --radius: 12px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:9999;
+    opacity:.4;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-tabs {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .tab-btn:hover { color: var(--text); background: var(--bg3); }
+  .tab-btn.active { color: var(--accent); background: rgba(240,192,64,0.1); }
+
+  .nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .auth-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .auth-btn:hover { opacity: 0.85; }
+  .auth-btn.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .user-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+    font-size: 0.8rem;
+  }
+  .user-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; color: #000;
+  }
+  .verified-badge {
+    color: var(--verified);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  /* PAGES */
+  .page { display: none; animation: fadeIn 0.3s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ===== HOME PAGE ===== */
+  .home-hero {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    position: relative;
+  }
+  .home-hero::before {
+    content:'';
+    position:absolute;
+    top:-60px; left:50%; transform:translateX(-50%);
+    width:600px; height:400px;
+    background: radial-gradient(ellipse at center, rgba(240,192,64,0.08) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f0c040, #e07020);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+  }
+  .confetti-row {
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 1.5rem;
+    padding: 0 2rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media(max-width:900px) {
+    .home-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SLIDESHOW */
+  .slideshow-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+  }
+  .slideshow-label {
+    padding: 1rem 1.25rem 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .slideshow-inner {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .slide.active { opacity: 1; }
+  .slide img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+  }
+  .slide-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 3rem;
+    gap: 0.5rem;
+  }
+  .slide-placeholder span {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .slide-caption {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    width: 100%;
+    padding: 1.5rem 1.25rem 1rem;
+  }
+  .slide-caption .uploader { font-size: 0.75rem; color: var(--accent); margin-bottom: 0.25rem; }
+  .slide-caption .msg { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+  .slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.75rem;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.2s, width 0.2s;
+  }
+  .dot.active { background: var(--accent); width: 16px; border-radius: 3px; }
+  .empty-slide-msg {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 380px; color: var(--muted); text-align: center; gap: 0.5rem;
+    padding: 2rem;
+  }
+  .empty-slide-msg .icon { font-size: 2.5rem; }
+  .empty-slide-msg p { font-size: 0.9rem; line-height: 1.6; }
+
+  /* DONATIONS PANEL */
+  .donations-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .total-raised {
+    text-align: right;
+  }
+  .total-label { font-size: 0.7rem; color: var(--muted); }
+  .total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .donations-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 420px;
+    padding: 0.5rem 0;
+  }
+  .donations-list::-webkit-scrollbar { width: 4px; }
+  .donations-list::-webkit-scrollbar-track { background: transparent; }
+  .donations-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .donation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+  .donation-item:hover { background: rgba(255,255,255,0.02); }
+  .donation-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; color: #000;
+    flex-shrink: 0;
+  }
+  .donation-info { flex: 1; min-width: 0; }
+  .donation-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .donation-name .vbadge {
+    font-size: 0.65rem;
+    color: var(--verified);
+    background: rgba(74,222,128,0.1);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  .donation-msg {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .donation-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .donation-amount {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .donation-time {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+  .no-donations {
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* QR SECTION */
+  .qr-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .qr-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .qr-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .qr-placeholder {
+    width: 140px; height: 140px;
+    background: var(--bg3);
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+  .qr-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .qr-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ===== GALLERY PAGE ===== */
+  .page-header {
+    padding: 2.5rem 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+  }
+  .page-header p { color: var(--muted); font-size: 0.9rem; }
+
+  .upload-zone {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+  }
+  .upload-box {
+    background: var(--card);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 1.5rem;
+  }
+  .upload-box:hover, .upload-box.drag { border-color: var(--accent); background: rgba(240,192,64,0.04); }
+  .upload-box .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .upload-box p { color: var(--muted); font-size: 0.9rem; }
+  .upload-box strong { color: var(--accent); }
+  #upload-file-input { display: none; }
+
+  .upload-form-inner {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .upload-form-inner.show { display: flex; }
+  .upload-preview {
+    width: 100%; max-height: 220px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: var(--bg3);
+  }
+  .form-field label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .form-field input, .form-field textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .form-field input:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--muted); }
+  .btn-row { display: flex; gap: 0.75rem; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+  .gallery-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .gallery-card:hover { transform: translateY(-3px); border-color: rgba(240,192,64,0.3); }
+  .gallery-card img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+    display: block;
+    background: var(--bg3);
+  }
+  .gallery-card-body { padding: 1rem; }
+  .gallery-card-uploader {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .gallery-card-msg { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+  .gallery-card-time { font-size: 0.72rem; color: var(--muted); margin-top: 0.5rem; }
+  .empty-gallery {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+  }
+  .empty-gallery .icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+  /* ===== FORMS PAGE ===== */
+  .forms-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 3rem;
+  }
+  .forms-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .forms-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+  }
+  .forms-header p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .question-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .question-label {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .anon-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .submit-row {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* DIALOG */
+  .dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .dialog-overlay.open { display: flex; }
+  .dialog-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    animation: popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .dialog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .dialog-body {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .dialog-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    cursor: pointer;
+  }
+  .dialog-checkbox-row input[type=checkbox] {
+    width: 18px; height: 18px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .dialog-checkbox-row span {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .donation-fields {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: var(--bg3);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(240,192,64,0.2);
+  }
+  .donation-fields.show { display: flex; }
+  .donation-fields label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+  .donation-fields input, .donation-fields textarea {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    resize: none;
+  }
+  .donation-fields input:focus, .donation-fields textarea:focus {
+    outline: none; border-color: var(--accent);
+  }
+  .dialog-footer {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--bg3);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.88rem;
+    color: var(--text);
+    z-index: 2000;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    max-width: 320px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* SUCCESS ANIMATION */
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .floating { animation: float 3s ease-in-out infinite; }
+
+  /* Loading spinner */
+  .spinner {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Scrollbar global */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .amount-prefix {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .amount-prefix span {
+    position: absolute;
+    left: 0.8rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .amount-prefix input {
+    padding-left: 1.8rem !important;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🎂 Jeremee Cayde</div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('home')">Home</button>
+    <button class="tab-btn" onclick="showTab('gallery')">Gallery</button>
+    <button class="tab-btn" onclick="showTab('forms')">Forms</button>
+  </div>
+  <div class="nav-auth" id="nav-auth">
+    <button class="auth-btn" onclick="signInWithGoogle()">Sign in with Google</button>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+  <div class="home-hero">
+    <p class="hero-eyebrow">March 17 · A Very Special Day</p>
+    <h1 class="hero-title">Happy Birthday<br>Jeremee Cayde!</h1>
+    <p class="hero-sub">Today we celebrate the one, the only, the legend. Drop a message, share a memory, and… well, you know what to do. 😏</p>
+    <div class="confetti-row floating">🎉 🎁 🎂 🥳 🎊</div>
+  </div>
+
+  <div class="home-grid">
+    <!-- SLIDESHOW -->
+    <div class="slideshow-wrap">
+      <div class="slideshow-label">📸 Memories from friends & family</div>
+      <div id="slideshow-container">
+        <div class="empty-slide-msg" id="slideshow-empty">
+          <span class="icon">🖼️</span>
+          <p>No photos yet! Be the first to upload a memory in the <strong>Gallery</strong> tab.</p>
+        </div>
+      </div>
+      <div class="slide-dots" id="slide-dots"></div>
+    </div>
+
+    <!-- DONATIONS -->
+    <div class="donations-panel">
+      <div class="panel-header">
+        <span class="panel-title">💸 Gift Tracker</span>
+        <div class="total-raised">
+          <div class="total-label">Total Raised</div>
+          <div class="total-amount" id="total-amount">₱0.00</div>
+        </div>
+      </div>
+      <div class="donations-list" id="donations-list">
+        <div class="no-donations" id="no-donations-msg">
+          🎁 No gifts yet... nudge nudge.<br><small style="color:var(--muted)">Go to <strong>Forms</strong> to send a message!</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR CODES -->
+  <div class="qr-section">
+    <h2 class="section-title">Send a Gift 🎁</h2>
+    <p class="section-sub">Any amount is deeply, sincerely, wholeheartedly appreciated. No pressure though. (pressure)</p>
+    <div class="qr-grid">
+      <div class="qr-card">
+        <div class="qr-placeholder">📱</div>
+        <div class="qr-label">GCash</div>
+        <div class="qr-hint">Scan to send via GCash.<br>Replace this placeholder with your actual QR.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-placeholder">🏦</div>
+        <div class="qr-label">Bank Transfer</div>
+        <div class="qr-hint">Scan to send via bank.<br>Replace this placeholder with your actual QR.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GALLERY PAGE ===== -->
+<div id="page-gallery" class="page">
+  <div class="page-header">
+    <h1>Gallery</h1>
+    <p>Upload your favorite photos with Jeremee. Add a short message to go along with it!</p>
+  </div>
+  <div class="upload-zone">
+    <div class="upload-box" id="upload-box" onclick="document.getElementById('upload-file-input').click()">
+      <div class="icon">📷</div>
+      <p><strong>Click to upload</strong> or drag & drop a photo</p>
+      <p style="font-size:0.8rem;margin-top:0.25rem">JPG, PNG, GIF up to 5MB</p>
+    </div>
+    <input type="file" id="upload-file-input" accept="image/*" onchange="onFileSelected(event)"/>
+    <div class="upload-form-inner" id="upload-form">
+      <img src="" alt="preview" class="upload-preview" id="upload-preview"/>
+      <div class="form-field">
+        <label>Your Name (optional)</label>
+        <input type="text" id="gallery-uploader" placeholder="Anonymous"/>
+      </div>
+      <div class="form-field">
+        <label>Your Email <span style="color:var(--muted);font-size:0.75rem;text-transform:none;letter-spacing:0">(optional — for a thank-you email)</span></label>
+        <input type="email" id="gallery-email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-field">
+        <label>Your message about this photo *</label>
+        <textarea id="gallery-msg" rows="3" placeholder="Share a memory, a joke, a heartfelt note..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="submitGalleryPhoto()">Upload Photo 🚀</button>
+        <button class="btn-ghost" onclick="cancelUpload()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="gallery-grid" id="gallery-grid">
+    <div class="empty-gallery" id="gallery-empty">
+      <span class="icon">🖼️</span>
+      <p>No photos yet. Be the first to share a memory!</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FORMS PAGE ===== -->
+<div id="page-forms" class="page">
+  <div class="forms-wrap">
+    <div class="forms-header">
+      <h1>🎂 Birthday Questions</h1>
+      <p>Answer a few fun questions for the birthday boy! Sign in to get a verified badge, or stay anonymous — your choice.</p>
+    </div>
+
+    <div class="anon-note">
+      <span>🕵️</span>
+      <span id="anon-status-text">You're answering anonymously. Sign in to get a ✅ verified badge!</span>
+    </div>
+
+    <div class="question-card">
+      <div class="question-label">Question 1</div>
+      <div class="question-text">How long have you known Jeremee?</div>
+      <div class="form-field">
+        <textarea id="q1" rows="3" placeholder="e.g. Since kindergarten... feels like forever 😅"></textarea>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-label">Question 2</div>
+      <div class="question-text">What are the best moments you've had with him?</div>
+      <div class="form-field">
+        <textarea id="q2" rows="3" placeholder="Share a fun memory or inside joke..."></textarea>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-label">Question 3</div>
+      <div class="question-text">How do you consider your relationship with Jeremee?</div>
+      <div class="form-field">
+        <textarea id="q3" rows="3" placeholder="Best friend? Family? Colleague? Frenemy? 😄"></textarea>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-label">Question 4</div>
+      <div class="question-text">What is your wish for Jeremee? 🌟</div>
+      <div class="form-field">
+        <textarea id="q4" rows="3" placeholder="Make it a good one!"></textarea>
+      </div>
+    </div>
+
+    <div class="submit-row">
+      <button class="btn-primary" onclick="openDonationDialog()">Save & Submit 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DIALOG ===== -->
+<div class="dialog-overlay" id="donation-dialog">
+  <div class="dialog-box">
+    <div class="dialog-title">🎁 One More Thing...</div>
+    <div class="dialog-body">
+      Thank you so much for sharing your wishes for Jeremee! Your message means the world. 💛
+    </div>
+    <label class="dialog-checkbox-row">
+      <input type="checkbox" id="donate-checkbox" onchange="toggleDonationFields()"/>
+      <span>I'd also like to send a gift or donation to Jeremee (because why not, it's his birthday! 🥳)</span>
+    </label>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;background:var(--bg3);border-radius:8px;padding:0.7rem 0.9rem;line-height:1.6;">
+      ☑️ This message is <strong>not requiring</strong> you to send gifts, but rather just a reminder of the celebration of his birthday. Thank you for your cooperation! Thank you and Be Safe Always. 🙏
+    </div>
+    <div class="donation-fields" id="donation-fields">
+      <div>
+        <label>Your Name</label>
+        <input type="text" id="donate-name" placeholder="Anonymous"/>
+      </div>
+      <div>
+        <label>Your Email <span style="color:var(--accent)">*</span> <span style="color:var(--muted);font-size:0.7rem;text-transform:none;letter-spacing:0">(for confirmation)</span></label>
+        <input type="email" id="donate-email" placeholder="you@example.com"/>
+      </div>
+      <div>
+        <label>Amount (₱)</label>
+        <div class="amount-prefix">
+          <span>₱</span>
+          <input type="number" id="donate-amount" placeholder="0.00" min="1"/>
+        </div>
+      </div>
+      <div>
+        <label>Birthday Message</label>
+        <textarea id="donate-msg" rows="2" placeholder="Happy birthday Jeremee! 🎂"></textarea>
+      </div>
+    </div>
+    <div class="dialog-footer">
+      <button class="btn-ghost" onclick="closeDonationDialog()">Maybe Later</button>
+      <button class="btn-primary" onclick="submitForm()">Send it! 🚀</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  // =============================================
+  // 🔧 REPLACE WITH YOUR FIREBASE CONFIG BELOW
+  // =============================================
+  const firebaseConfig = {
+    apiKey: "AIzaSyCLpv3E1DS4xVhH4xTEcA_wwixwOMVJBp0",
+  authDomain: "caydethebirthdayboy.firebaseapp.com",
+  projectId: "caydethebirthdayboy",
+  storageBucket: "caydethebirthdayboy.firebasestorage.app",
+  messagingSenderId: "1034191891434",
+  appId: "1:1034191891434:web:129df87a9d396b776ae093",
+  measurementId: "G-F0GGE3YGGK"
+  };
+  // =============================================
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // =============================================
+  // 📧 EMAILJS CONFIG — replace with your values
+  // Get them at https://www.emailjs.com
+  // =============================================
+  const EMAILJS_PUBLIC_KEY    = "wGSRduC5qILn1qEIX";       // Account > API Keys
+  const EMAILJS_SERVICE_ID    = "service_stkmotm";       // Email Services tab
+  const EMAILJS_TEMPLATE_DONATION = "template_i3g2pqk";  // Email Templates tab
+  const EMAILJS_TEMPLATE_GALLERY  = "YOUR_GALLERY_TEMPLATE_ID";   // Email Templates tab
+  const JEREMEE_EMAIL         = "caydejeremee@gmail.com";  // Jeremee's email
+  // =============================================
+
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  let currentUser = null;
+  let selectedFile = null;
+
+  // ---- EMAILJS HELPERS ----
+  async function sendDonationEmails({ name, email, amount, message }) {
+    const now = new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila', dateStyle: 'long', timeStyle: 'short' });
+    const params = {
+      sender_name:    name,
+      sender_email:   email,
+      amount:         `₱${parseFloat(amount).toFixed(2)}`,
+      bday_message:   message,
+      timestamp:      now,
+      jeremee_email:  JEREMEE_EMAIL,
+    };
+    const sends = [];
+    // Thank-you to sender (only if they gave an email)
+    if (email) {
+      sends.push(
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, {
+          ...params,
+          to_email: email,
+          to_name:  name,
+          email_type: 'sender_thankyou',
+        }).catch(e => console.warn('EmailJS sender error:', e))
+      );
+    }
+    // Notification to Jeremee
+    sends.push(
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, {
+        ...params,
+        to_email:   JEREMEE_EMAIL,
+        to_name:    'Jeremee',
+        email_type: 'jeremee_notification',
+      }).catch(e => console.warn('EmailJS Jeremee error:', e))
+    );
+    await Promise.all(sends);
+  }
+
+  async function sendGalleryEmails({ uploader, email }) {
+    const now = new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila', dateStyle: 'long', timeStyle: 'short' });
+    const params = {
+      uploader_name:  uploader,
+      uploader_email: email || '(not provided)',
+      timestamp:      now,
+      jeremee_email:  JEREMEE_EMAIL,
+    };
+    const sends = [];
+    if (email) {
+      sends.push(
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, {
+          ...params,
+          to_email: email,
+          to_name:  uploader,
+          email_type: 'sender_thankyou',
+        }).catch(e => console.warn('EmailJS gallery sender error:', e))
+      );
+    }
+    sends.push(
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, {
+        ...params,
+        to_email:   JEREMEE_EMAIL,
+        to_name:    'Jeremee',
+        email_type: 'jeremee_notification',
+      }).catch(e => console.warn('EmailJS gallery Jeremee error:', e))
+    );
+    await Promise.all(sends);
+  }
+
+  // ---- AUTH ----
+  window.signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch(e) { showToast("Sign-in failed. Try again."); }
+  };
+  window.signOutUser = async () => {
+    await signOut(auth);
+    showToast("Signed out. See you around! 👋");
+  };
+
+  onAuthStateChanged(auth, user => {
+    currentUser = user;
+    const authEl = document.getElementById('nav-auth');
+    const anonText = document.getElementById('anon-status-text');
+    if (user) {
+      const initial = (user.displayName || 'U')[0].toUpperCase();
+      authEl.innerHTML = `
+        <div class="user-chip">
+          <div class="user-avatar">${user.photoURL ? `<img src="${user.photoURL}" style="width:26px;height:26px;border-radius:50%"/>` : initial}</div>
+          <span>${user.displayName?.split(' ')[0] || 'User'}</span>
+          <span class="verified-badge">✅ Verified</span>
+        </div>
+        <button class="auth-btn secondary" onclick="signOutUser()">Sign Out</button>
+      `;
+      if (anonText) anonText.textContent = `Signed in as ${user.displayName} ✅ — your responses will be verified!`;
+    } else {
+      authEl.innerHTML = `<button class="auth-btn" onclick="signInWithGoogle()">Sign in with Google</button>`;
+      if (anonText) anonText.textContent = "You're answering anonymously. Sign in to get a ✅ verified badge!";
+    }
+  });
+
+  // ---- DONATIONS: Real-time listener ----
+  const donationsQuery = query(collection(db, 'donations'), orderBy('timestamp', 'desc'));
+  onSnapshot(donationsQuery, snap => {
+    const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderDonations(items);
+  });
+
+  function renderDonations(items) {
+    const list = document.getElementById('donations-list');
+    const noMsg = document.getElementById('no-donations-msg');
+    const totalEl = document.getElementById('total-amount');
+    if (!items.length) {
+      list.innerHTML = `<div class="no-donations" id="no-donations-msg">🎁 No gifts yet... nudge nudge.<br><small>Go to <strong>Forms</strong> to send a message!</small></div>`;
+      totalEl.textContent = '₱0.00';
+      return;
+    }
+    let total = 0;
+    list.innerHTML = items.map(d => {
+      total += parseFloat(d.amount || 0);
+      const initial = (d.name || 'A')[0].toUpperCase();
+      const ts = d.timestamp?.toDate ? timeAgo(d.timestamp.toDate()) : 'just now';
+      const verifiedBadge = d.verified ? `<span class="vbadge">✅</span>` : `<span class="vbadge" style="color:var(--muted);background:rgba(255,255,255,0.05)">👤</span>`;
+      return `
+        <div class="donation-item">
+          <div class="donation-avatar">${initial}</div>
+          <div class="donation-info">
+            <div class="donation-name">${escHtml(d.name || 'Anonymous')} ${verifiedBadge}</div>
+            <div class="donation-msg">${escHtml(d.message || '🎂 Happy Birthday!')}</div>
+          </div>
+          <div class="donation-meta">
+            <div class="donation-amount">₱${parseFloat(d.amount || 0).toFixed(2)}</div>
+            <div class="donation-time">${ts}</div>
+          </div>
+        </div>`;
+    }).join('');
+    totalEl.textContent = '₱' + total.toFixed(2);
+  }
+
+  // ---- GALLERY: Real-time listener ----
+  const galleryQuery = query(collection(db, 'gallery'), orderBy('timestamp', 'desc'));
+  onSnapshot(galleryQuery, snap => {
+    const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderGallery(items);
+    renderSlideshow(items);
+  });
+
+  function renderGallery(items) {
+    const grid = document.getElementById('gallery-grid');
+    if (!items.length) {
+      grid.innerHTML = `<div class="empty-gallery" id="gallery-empty"><span class="icon">🖼️</span><p>No photos yet. Be the first to share a memory!</p></div>`;
+      return;
+    }
+    grid.innerHTML = items.map(p => {
+      const ts = p.timestamp?.toDate ? timeAgo(p.timestamp.toDate()) : 'just now';
+      const verifiedBadge = p.verified ? `<span style="color:var(--verified)">✅</span>` : '';
+      return `
+        <div class="gallery-card">
+          <img src="${escHtml(p.imageUrl)}" alt="memory" loading="lazy"/>
+          <div class="gallery-card-body">
+            <div class="gallery-card-uploader">${escHtml(p.uploader || 'Anonymous')} ${verifiedBadge}</div>
+            <div class="gallery-card-msg">${escHtml(p.message)}</div>
+            <div class="gallery-card-time">${ts}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  let slideIndex = 0;
+  let slideTimer = null;
+  function renderSlideshow(items) {
+    const container = document.getElementById('slideshow-container');
+    const dots = document.getElementById('slide-dots');
+    if (!items.length) {
+      container.innerHTML = `<div class="empty-slide-msg"><span class="icon">🖼️</span><p>No photos yet! Be the first to upload a memory in the <strong>Gallery</strong> tab.</p></div>`;
+      dots.innerHTML = '';
+      return;
+    }
+    const inner = document.createElement('div');
+    inner.className = 'slideshow-inner';
+    inner.id = 'slides-inner';
+    items.forEach((p, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide' + (i === 0 ? ' active' : '');
+      slide.innerHTML = `
+        <img src="${escHtml(p.imageUrl)}" alt="memory"/>
+        <div class="slide-caption">
+          <div class="uploader">📸 ${escHtml(p.uploader || 'Anonymous')}</div>
+          <div class="msg">${escHtml(p.message)}</div>
+        </div>`;
+      inner.appendChild(slide);
+    });
+    container.innerHTML = '';
+    container.appendChild(inner);
+    dots.innerHTML = items.map((_, i) => `<div class="dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`).join('');
+    if (slideTimer) clearInterval(slideTimer);
+    slideIndex = 0;
+    slideTimer = setInterval(() => goSlide((slideIndex + 1) % items.length), 4000);
+  }
+
+  window.goSlide = (n) => {
+    const slides = document.querySelectorAll('.slide');
+    const dotEls = document.querySelectorAll('.dot');
+    if (!slides.length) return;
+    slides[slideIndex]?.classList.remove('active');
+    dotEls[slideIndex]?.classList.remove('active');
+    slideIndex = n;
+    slides[slideIndex]?.classList.add('active');
+    dotEls[slideIndex]?.classList.add('active');
+  };
+
+  // ---- GALLERY UPLOAD ----
+  window.onFileSelected = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    selectedFile = file;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      document.getElementById('upload-preview').src = ev.target.result;
+      document.getElementById('upload-form').classList.add('show');
+    };
+    reader.readAsDataURL(file);
+  };
+  window.cancelUpload = () => {
+    selectedFile = null;
+    document.getElementById('upload-form').classList.remove('show');
+    document.getElementById('upload-file-input').value = '';
+    document.getElementById('gallery-msg').value = '';
+    document.getElementById('gallery-uploader').value = '';
+    document.getElementById('gallery-email').value = '';
+  };
+  window.submitGalleryPhoto = async () => {
+    const msg = document.getElementById('gallery-msg').value.trim();
+    if (!selectedFile) { showToast("Please select a photo first!"); return; }
+    if (!msg) { showToast("Please add a short message!"); return; }
+    const uploader = document.getElementById('gallery-uploader').value.trim() || (currentUser?.displayName || 'Anonymous');
+    const email    = document.getElementById('gallery-email').value.trim() || (currentUser?.email || '');
+    showToast("Uploading... ⏳");
+    try {
+      const storageRef = ref(storage, `gallery/${Date.now()}_${selectedFile.name}`);
+      await uploadBytes(storageRef, selectedFile);
+      const url = await getDownloadURL(storageRef);
+      await addDoc(collection(db, 'gallery'), {
+        imageUrl: url,
+        uploader,
+        message: msg,
+        verified: !!currentUser,
+        timestamp: serverTimestamp()
+      });
+      // Send thank-you emails
+      sendGalleryEmails({ uploader, email });
+      showToast("Photo uploaded! 🎉 A thank-you email is on its way!");
+      cancelUpload();
+    } catch(e) {
+      console.error(e);
+      showToast("Upload failed. Check Firebase config.");
+    }
+  };
+
+  // ---- FORM SUBMIT ----
+  window.openDonationDialog = () => {
+    const q1 = document.getElementById('q1').value.trim();
+    if (!q1) { showToast("Please answer at least Question 1! 😊"); return; }
+    document.getElementById('donation-dialog').classList.add('open');
+  };
+  window.closeDonationDialog = () => {
+    document.getElementById('donation-dialog').classList.remove('open');
+  };
+  window.toggleDonationFields = () => {
+    const checked = document.getElementById('donate-checkbox').checked;
+    document.getElementById('donation-fields').classList.toggle('show', checked);
+  };
+  window.submitForm = async () => {
+    const isDonating = document.getElementById('donate-checkbox').checked;
+    if (isDonating) {
+      const amount  = parseFloat(document.getElementById('donate-amount').value);
+      const msg     = document.getElementById('donate-msg').value.trim() || '🎂 Happy Birthday Jeremee!';
+      const name    = document.getElementById('donate-name').value.trim() || (currentUser?.displayName || 'Anonymous');
+      const email   = document.getElementById('donate-email').value.trim() || (currentUser?.email || '');
+      if (!amount || amount <= 0) { showToast("Please enter a valid amount!"); return; }
+      if (!email) { showToast("Please enter your email so we can send a confirmation! 📧"); return; }
+      try {
+        await addDoc(collection(db, 'donations'), {
+          name, amount, message: msg,
+          verified: !!currentUser,
+          timestamp: serverTimestamp()
+        });
+        // Send confirmation + notification emails
+        sendDonationEmails({ name, email, amount, message: msg });
+        showToast(`Thank you ${name}! Gift of ₱${amount.toFixed(2)} recorded. Check your email! 💛`);
+      } catch(e) { console.error(e); showToast("Error saving donation. Check Firebase config."); return; }
+    } else {
+      showToast("Your wishes have been saved! Thank you! 🎂");
+    }
+    closeDonationDialog();
+    document.getElementById('donate-checkbox').checked = false;
+    document.getElementById('donation-fields').classList.remove('show');
+    document.getElementById('donate-amount').value = '';
+    document.getElementById('donate-email').value = '';
+    document.getElementById('donate-msg').value = '';
+    document.getElementById('donate-name').value = '';
+    document.getElementById('q1').value = '';
+    document.getElementById('q2').value = '';
+    document.getElementById('q3').value = '';
+    document.getElementById('q4').value = '';
+  };
+
+  // ---- HELPERS ----
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+  window.showToast = showToast;
+
+  function escHtml(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function timeAgo(date) {
+    const s = Math.floor((Date.now() - date) / 1000);
+    if (s < 60) return 'just now';
+    if (s < 3600) return Math.floor(s/60) + 'm ago';
+    if (s < 86400) return Math.floor(s/3600) + 'h ago';
+    return Math.floor(s/86400) + 'd ago';
+  }
+
+  // Drag & drop
+  const uploadBox = document.getElementById('upload-box');
+  uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.classList.add('drag'); });
+  uploadBox.addEventListener('dragleave', () => uploadBox.classList.remove('drag'));
+  uploadBox.addEventListener('drop', e => {
+    e.preventDefault(); uploadBox.classList.remove('drag');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        document.getElementById('upload-preview').src = ev.target.result;
+        document.getElementById('upload-form').classList.add('show');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Close dialog on overlay click
+  document.getElementById('donation-dialog').addEventListener('click', function(e) {
+    if (e.target === this) closeDonationDialog();
+  });
+</script>
+
+<script>
+  function showTab(tab) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
