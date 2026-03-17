@@ -2,358 +2,422 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Happy Birthday Jeremee Cayde 🎂</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
-  :root {
-    --bg: #0a0a0a; --bg2: #111111; --bg3: #1a1a1a; --card: #161616;
-    --border: #2a2a2a; --accent: #f0c040; --accent2: #e07020;
-    --text: #f0ede8; --muted: #888; --verified: #4ade80; --radius: 12px;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
-  body::before {
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.4;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  }
+:root {
+  --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --card:#161616;
+  --border:#2a2a2a; --accent:#f0c040; --accent2:#e07020;
+  --text:#f0ede8; --muted:#777; --verified:#4ade80; --radius:12px;
+  --nav-h:56px; --mob-nav-h:62px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;overflow-x:hidden;
+  padding-top:var(--nav-h);
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
 
-  /* NAV */
-  nav.top-nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.95); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; padding:0 1.5rem; height:58px; gap:0.75rem; }
-  .nav-logo { font-family:'Playfair Display',serif; font-size:1rem; color:var(--accent); letter-spacing:0.05em; white-space:nowrap; flex-shrink:0; }
-  .nav-tabs { display:flex; gap:0.2rem; flex-wrap:nowrap; }
-  .tab-btn { background:none; border:none; color:var(--muted); font-family:'DM Sans',sans-serif; font-size:0.85rem; padding:0.45rem 0.9rem; border-radius:8px; cursor:pointer; transition:all 0.2s; letter-spacing:0.02em; white-space:nowrap; }
-  .tab-btn:hover { color:var(--text); background:var(--bg3); }
-  .tab-btn.active { color:var(--accent); background:rgba(240,192,64,0.1); }
-  .tab-btn.admin-tab { color:var(--accent2); border:1px solid rgba(224,112,32,0.3); display:none; }
-  .tab-btn.admin-tab.visible { display:inline-flex; align-items:center; gap:0.3rem; }
-  .tab-btn.admin-tab:hover { background:rgba(224,112,32,0.1); color:var(--accent); }
-  .tab-btn.admin-tab.active { background:rgba(224,112,32,0.15); color:var(--accent); border-color:var(--accent2); }
-  .nav-auth { display:flex; align-items:center; gap:0.6rem; flex-shrink:0; }
-  .auth-btn { background:var(--accent); color:#000; border:none; border-radius:8px; padding:0.4rem 0.9rem; font-size:0.82rem; font-weight:500; cursor:pointer; transition:opacity 0.2s; font-family:'DM Sans',sans-serif; white-space:nowrap; }
-  .auth-btn:hover { opacity:0.85; }
-  .auth-btn.secondary { background:transparent; border:1px solid var(--border); color:var(--text); }
-  .user-chip { display:flex; align-items:center; gap:0.4rem; background:var(--bg3); border:1px solid var(--border); border-radius:999px; padding:0.25rem 0.65rem 0.25rem 0.25rem; font-size:0.78rem; white-space:nowrap; }
-  .verified-badge { color:var(--verified); font-size:0.7rem; font-weight:600; }
+/* ─── TOP NAV ─── */
+.top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:var(--nav-h);
+  background:rgba(10,10,10,0.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+  padding:0 1.25rem;gap:0.75rem;
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--accent);letter-spacing:0.04em;white-space:nowrap;flex-shrink:0;}
+.nav-tabs{display:flex;gap:0.1rem;flex:1;justify-content:center;}
+.tab-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.82rem;padding:0.4rem 0.82rem;border-radius:8px;cursor:pointer;transition:all 0.18s;white-space:nowrap;}
+.tab-btn:hover{color:var(--text);background:var(--bg3);}
+.tab-btn.active{color:var(--accent);background:rgba(240,192,64,0.1);}
+.tab-btn.admin-tab{color:var(--accent2);border:1px solid rgba(224,112,32,0.3);display:none;}
+.tab-btn.admin-tab.visible{display:inline-flex;align-items:center;gap:0.3rem;}
+.tab-btn.admin-tab.active{background:rgba(224,112,32,0.15);color:var(--accent);border-color:var(--accent2);}
+.nav-auth{display:flex;align-items:center;gap:0.5rem;flex-shrink:0;}
+.auth-btn{background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.38rem 0.85rem;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:opacity 0.2s;}
+.auth-btn:hover{opacity:0.85;}
+.auth-btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:400;}
+.user-chip{display:flex;align-items:center;gap:0.4rem;background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:0.22rem 0.6rem 0.22rem 0.22rem;font-size:0.75rem;white-space:nowrap;}
+.verified-badge{color:var(--verified);font-size:0.68rem;}
 
-  /* PAGES */
-  .page { display:none; animation:fadeIn 0.3s ease; }
-  .page.active { display:block; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+/* ─── MOBILE BOTTOM NAV ─── */
+.mobile-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  height:var(--mob-nav-h);
+  background:rgba(8,8,8,0.98);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  display:none;
+  align-items:stretch;justify-content:space-around;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.mob-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0.16rem;flex:1;
+  background:none;border:none;
+  color:var(--muted);font-family:'DM Sans',sans-serif;
+  font-size:0.58rem;letter-spacing:0.01em;
+  cursor:pointer;padding:0.4rem 0.2rem;
+  transition:color 0.18s;
+}
+.mob-btn .mi{font-size:1.22rem;line-height:1;display:block;}
+.mob-btn.active{color:var(--accent);}
+.mob-btn.admin-mob{display:none;}
+.mob-btn.admin-mob.visible{display:flex;}
 
-  /* HOME */
-  .home-hero { text-align:center; padding:3rem 1.5rem 2rem; position:relative; }
-  .home-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse at center, rgba(240,192,64,0.08) 0%, transparent 70%); pointer-events:none; }
-  .hero-eyebrow { font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem; }
-  .hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,6vw,4.5rem); font-weight:900; line-height:1.05; margin-bottom:0.5rem; background:linear-gradient(135deg,#f0c040,#e07020); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .hero-sub { color:var(--muted); font-size:0.95rem; max-width:480px; margin:0 auto 1.5rem; line-height:1.6; }
-  .confetti-row { font-size:1.5rem; letter-spacing:0.3rem; margin-bottom:1rem; }
-  .home-grid { display:grid; grid-template-columns:1fr 360px; gap:1.5rem; padding:0 1.5rem 3rem; max-width:1200px; margin:0 auto; }
-  @media(max-width:900px) { .home-grid { grid-template-columns:1fr; } }
+/* ─── PAGES ─── */
+.page{display:none;animation:fadeIn 0.28s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
 
-  /* SLIDESHOW */
-  .slideshow-wrap { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  .slideshow-label { padding:1rem 1.25rem 0.5rem; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); }
-  .slideshow-inner { position:relative; height:380px; overflow:hidden; background:#0d0d0d; }
-  .slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; }
-  .slide.active { opacity:1; }
-  .slide img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.6); }
-  .slide-caption { position:relative; z-index:2; background:linear-gradient(transparent,rgba(0,0,0,0.85)); width:100%; padding:1.5rem 1.25rem 1rem; }
-  .slide-caption .uploader { font-size:0.75rem; color:var(--accent); margin-bottom:0.25rem; }
-  .slide-caption .msg { font-size:0.9rem; color:var(--text); line-height:1.5; }
-  .slide-dots { display:flex; justify-content:center; gap:0.4rem; padding:0.75rem; }
-  .dot { width:6px; height:6px; border-radius:50%; background:var(--border); cursor:pointer; transition:background 0.2s, width 0.2s; }
-  .dot.active { background:var(--accent); width:16px; border-radius:3px; }
-  .empty-slide-msg { display:flex; flex-direction:column; align-items:center; justify-content:center; height:380px; color:var(--muted); text-align:center; gap:0.5rem; padding:2rem; }
-  .empty-slide-msg .icon { font-size:2.5rem; }
-  .empty-slide-msg p { font-size:0.9rem; line-height:1.6; }
+/* ─── HOME ─── */
+.home-hero{text-align:center;padding:2.5rem 1.25rem 1.75rem;position:relative;overflow:hidden;}
+.home-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,rgba(240,192,64,0.07) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,8vw,4.5rem);font-weight:900;line-height:1.05;margin-bottom:0.5rem;background:linear-gradient(135deg,#f0c040,#e07020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{color:var(--muted);font-size:0.9rem;max-width:440px;margin:0 auto 1.25rem;line-height:1.65;}
+.confetti-row{font-size:1.4rem;letter-spacing:0.25rem;margin-bottom:0.75rem;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.floating{animation:float 3s ease-in-out infinite;}
+.home-grid{display:grid;grid-template-columns:1fr 340px;gap:1.25rem;padding:0 1.25rem 2rem;max-width:1160px;margin:0 auto;}
 
-  /* DONATIONS PANEL */
-  .donations-panel { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); display:flex; flex-direction:column; overflow:hidden; }
-  .panel-header { padding:1rem 1.25rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
-  .panel-title { font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); }
-  .total-raised { text-align:right; }
-  .total-label { font-size:0.7rem; color:var(--muted); }
-  .total-amount { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--accent); font-weight:700; }
-  .donations-list { flex:1; overflow-y:auto; max-height:420px; padding:0.5rem 0; }
-  .donations-list::-webkit-scrollbar { width:4px; }
-  .donations-list::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
-  .donation-item { display:flex; align-items:flex-start; gap:0.75rem; padding:0.75rem 1.25rem; border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.15s; }
-  .donation-item:hover { background:rgba(255,255,255,0.02); }
-  .donation-avatar { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; color:#000; flex-shrink:0; }
-  .donation-info { flex:1; min-width:0; }
-  .donation-name { font-size:0.85rem; font-weight:500; display:flex; align-items:center; gap:0.4rem; }
-  .donation-name .vbadge { font-size:0.65rem; color:var(--verified); background:rgba(74,222,128,0.1); border-radius:4px; padding:1px 5px; }
-  .donation-msg { font-size:0.78rem; color:var(--muted); margin-top:0.15rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .donation-meta { text-align:right; flex-shrink:0; }
-  .donation-amount { font-size:0.9rem; font-weight:600; color:var(--accent); }
-  .donation-time { font-size:0.7rem; color:var(--muted); margin-top:0.1rem; }
-  .no-donations { padding:2rem; text-align:center; color:var(--muted); font-size:0.85rem; line-height:1.6; }
+/* Slideshow */
+.slideshow-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.slideshow-label{padding:0.85rem 1.1rem 0.45rem;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.slideshow-inner{position:relative;height:340px;overflow:hidden;background:#0d0d0d;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 0.8s ease;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+.slide.active{opacity:1;}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.6);}
+.slide-caption{position:relative;z-index:2;background:linear-gradient(transparent,rgba(0,0,0,0.85));width:100%;padding:1.25rem 1.1rem 0.85rem;}
+.slide-caption .uploader{font-size:0.7rem;color:var(--accent);margin-bottom:0.2rem;}
+.slide-caption .msg{font-size:0.88rem;color:var(--text);line-height:1.5;}
+.slide-dots{display:flex;justify-content:center;gap:0.4rem;padding:0.65rem;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all 0.2s;}
+.dot.active{background:var(--accent);width:14px;border-radius:3px;}
+.empty-slide-msg{display:flex;flex-direction:column;align-items:center;justify-content:center;height:340px;color:var(--muted);text-align:center;gap:0.5rem;padding:2rem;}
+.empty-slide-msg .icon{font-size:2.2rem;}
+.empty-slide-msg p{font-size:0.88rem;line-height:1.6;}
 
-  /* GALLERY */
-  .page-header { padding:2.5rem 1.5rem 1.5rem; max-width:1200px; margin:0 auto; }
-  .page-header h1 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:0.3rem; }
-  .page-header p { color:var(--muted); font-size:0.9rem; }
-  .upload-zone { max-width:1200px; margin:0 auto; padding:0 1.5rem 2rem; }
-  .upload-box { background:var(--card); border:2px dashed var(--border); border-radius:var(--radius); padding:2rem; text-align:center; cursor:pointer; transition:border-color 0.2s,background 0.2s; margin-bottom:1.5rem; }
-  .upload-box:hover,.upload-box.drag { border-color:var(--accent); background:rgba(240,192,64,0.04); }
-  .upload-box .icon { font-size:2rem; margin-bottom:0.5rem; }
-  .upload-box p { color:var(--muted); font-size:0.9rem; }
-  .upload-box strong { color:var(--accent); }
-  #upload-file-input { display:none; }
-  .upload-form-inner { display:none; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-bottom:1.5rem; gap:1rem; flex-direction:column; }
-  .upload-form-inner.show { display:flex; }
-  .upload-preview { width:100%; max-height:220px; object-fit:contain; border-radius:8px; background:var(--bg3); }
-  .form-field label { display:block; font-size:0.8rem; color:var(--muted); margin-bottom:0.4rem; letter-spacing:0.05em; text-transform:uppercase; }
-  .form-field input,.form-field textarea { width:100%; background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:0.7rem 0.9rem; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.9rem; resize:vertical; transition:border-color 0.2s; }
-  .form-field input:focus,.form-field textarea:focus { outline:none; border-color:var(--accent); }
-  .btn-primary { background:var(--accent); color:#000; border:none; border-radius:8px; padding:0.7rem 1.5rem; font-size:0.9rem; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; transition:opacity 0.2s,transform 0.1s; }
-  .btn-primary:hover { opacity:0.88; }
-  .btn-primary:active { transform:scale(0.98); }
-  .btn-ghost { background:transparent; border:1px solid var(--border); color:var(--text); border-radius:8px; padding:0.7rem 1.5rem; font-size:0.9rem; cursor:pointer; font-family:'DM Sans',sans-serif; transition:border-color 0.2s; }
-  .btn-ghost:hover { border-color:var(--muted); }
-  .btn-row { display:flex; gap:0.75rem; }
-  .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; max-width:1200px; margin:0 auto; padding:0 1.5rem 3rem; }
-  .gallery-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform 0.2s,border-color 0.2s; }
-  .gallery-card:hover { transform:translateY(-3px); border-color:rgba(240,192,64,0.3); }
-  .gallery-card img { width:100%; height:200px; object-fit:cover; display:block; background:var(--bg3); }
-  .gallery-card-body { padding:1rem; }
-  .gallery-card-uploader { font-size:0.75rem; color:var(--accent); margin-bottom:0.3rem; display:flex; align-items:center; gap:0.4rem; }
-  .gallery-card-msg { font-size:0.88rem; color:var(--text); line-height:1.5; }
-  .gallery-card-time { font-size:0.72rem; color:var(--muted); margin-top:0.5rem; }
-  .empty-gallery { grid-column:1/-1; text-align:center; padding:3rem; color:var(--muted); }
-  .empty-gallery .icon { font-size:2.5rem; display:block; margin-bottom:0.5rem; }
+/* Donations panel */
+.donations-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;overflow:hidden;}
+.panel-header{padding:0.9rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.panel-title{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.total-raised{text-align:right;}
+.total-label{font-size:0.68rem;color:var(--muted);}
+.total-amount{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--accent);font-weight:700;}
+.donations-list{flex:1;overflow-y:auto;max-height:380px;padding:0.4rem 0;}
+.donations-list::-webkit-scrollbar{width:3px;}
+.donations-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.donation-item{display:flex;align-items:flex-start;gap:0.65rem;padding:0.65rem 1.1rem;border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.15s;}
+.donation-item:hover{background:rgba(255,255,255,0.02);}
+.donation-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:#000;flex-shrink:0;}
+.donation-info{flex:1;min-width:0;}
+.donation-name{font-size:0.82rem;font-weight:500;display:flex;align-items:center;gap:0.35rem;}
+.donation-name .vbadge{font-size:0.62rem;color:var(--verified);background:rgba(74,222,128,0.1);border-radius:4px;padding:1px 4px;}
+.donation-msg{font-size:0.75rem;color:var(--muted);margin-top:0.12rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.donation-meta{text-align:right;flex-shrink:0;}
+.donation-amount{font-size:0.88rem;font-weight:600;color:var(--accent);}
+.donation-time{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.no-donations{padding:1.75rem;text-align:center;color:var(--muted);font-size:0.83rem;line-height:1.6;}
 
-  /* FORMS */
-  .forms-wrap { max-width:680px; margin:0 auto; padding:2.5rem 1.5rem 3rem; }
-  .forms-header { text-align:center; margin-bottom:2.5rem; }
-  .forms-header h1 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:0.4rem; }
-  .forms-header p { color:var(--muted); font-size:0.9rem; line-height:1.6; }
-  .question-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-bottom:1rem; }
-  .question-label { font-size:0.85rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
-  .question-text { font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:1rem; line-height:1.4; }
-  .anon-note { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:var(--muted); background:var(--bg3); border-radius:8px; padding:0.6rem 0.9rem; margin-bottom:1.5rem; }
-  .submit-row { margin-top:1.5rem; display:flex; justify-content:flex-end; }
+/* ─── GALLERY ─── */
+.page-header{padding:2rem 1.25rem 1.25rem;max-width:1160px;margin:0 auto;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:0.25rem;}
+.page-header p{color:var(--muted);font-size:0.88rem;}
+.upload-zone{max-width:1160px;margin:0 auto;padding:0 1.25rem 1.75rem;}
+.upload-box{background:var(--card);border:2px dashed var(--border);border-radius:var(--radius);padding:1.75rem;text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;margin-bottom:1.25rem;}
+.upload-box:hover,.upload-box.drag{border-color:var(--accent);background:rgba(240,192,64,0.04);}
+.upload-box .icon{font-size:1.75rem;margin-bottom:0.4rem;}
+.upload-box p{color:var(--muted);font-size:0.88rem;}
+.upload-box strong{color:var(--accent);}
+#upload-file-input{display:none;}
+.upload-form-inner{display:none;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;gap:0.85rem;flex-direction:column;}
+.upload-form-inner.show{display:flex;}
+.upload-preview{width:100%;max-height:200px;object-fit:contain;border-radius:8px;background:var(--bg3);}
+.form-field label{display:block;font-size:0.76rem;color:var(--muted);margin-bottom:0.35rem;letter-spacing:0.05em;text-transform:uppercase;}
+.form-field input,.form-field textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.65rem 0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;resize:vertical;transition:border-color 0.2s;}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--accent);}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.85rem;max-width:1160px;margin:0 auto;padding:0 1.25rem 2.5rem;}
+.gallery-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,border-color 0.2s;}
+.gallery-card:hover{transform:translateY(-3px);border-color:rgba(240,192,64,0.3);}
+.gallery-card img{width:100%;height:180px;object-fit:cover;display:block;background:var(--bg3);}
+.gallery-card-body{padding:0.85rem;}
+.gallery-card-uploader{font-size:0.72rem;color:var(--accent);margin-bottom:0.25rem;display:flex;align-items:center;gap:0.35rem;}
+.gallery-card-msg{font-size:0.85rem;color:var(--text);line-height:1.5;}
+.gallery-card-time{font-size:0.7rem;color:var(--muted);margin-top:0.4rem;}
+.empty-gallery{grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);}
+.empty-gallery .icon{font-size:2.2rem;display:block;margin-bottom:0.5rem;}
 
-  /* NAME ROW — forms and donation dialog */
-  .name-row { display:flex; flex-direction:column; gap:0.5rem; margin-bottom:0.1rem; }
-  .name-row-controls { display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; }
-  .name-input-wrap { flex:1; min-width:120px; }
-  .name-input-wrap input { width:100%; background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:0.55rem 0.8rem; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.88rem; transition:border-color 0.2s; }
-  .name-input-wrap input:focus { outline:none; border-color:var(--accent); }
-  .anon-toggle-btn { background:var(--bg3); border:1px solid var(--border); color:var(--muted); border-radius:8px; padding:0.5rem 0.9rem; font-size:0.78rem; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.2s; white-space:nowrap; }
-  .anon-toggle-btn:hover { border-color:var(--accent); color:var(--text); }
-  .anon-toggle-btn.is-anon { border-color:rgba(240,192,64,0.4); color:var(--accent); background:rgba(240,192,64,0.07); }
-  .anon-uid-hint { font-size:0.72rem; color:var(--muted); }
+/* ─── FORMS ─── */
+.forms-wrap{max-width:640px;margin:0 auto;padding:2rem 1.25rem 2.5rem;}
+.forms-header{text-align:center;margin-bottom:2rem;}
+.forms-header h1{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:0.35rem;}
+.forms-header p{color:var(--muted);font-size:0.88rem;line-height:1.6;}
+.question-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:0.85rem;}
+.question-label{font-size:0.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;}
+.question-text{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:0.85rem;line-height:1.4;}
+.anon-note{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--muted);background:var(--bg3);border-radius:8px;padding:0.55rem 0.85rem;margin-bottom:1.25rem;}
+.submit-row{margin-top:1.25rem;display:flex;justify-content:flex-end;}
+.name-row-controls{display:flex;align-items:center;gap:0.5rem;}
+.name-input-wrap{flex:1;}
+.name-input-wrap input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.55rem 0.8rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.86rem;transition:border-color 0.2s;}
+.name-input-wrap input:focus{outline:none;border-color:var(--accent);}
+.anon-toggle-btn{background:var(--bg3);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:0.5rem 0.8rem;font-size:0.74rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.anon-toggle-btn:hover{border-color:var(--accent);color:var(--text);}
+.anon-toggle-btn.is-anon{border-color:rgba(240,192,64,0.4);color:var(--accent);background:rgba(240,192,64,0.07);}
+.anon-uid-hint{font-size:0.7rem;color:var(--muted);margin-top:0.3rem;}
 
-  /* ADMIN RESPONSES */
-  .admin-wrap { max-width:900px; margin:0 auto; padding:2.5rem 1.5rem 3rem; }
-  .admin-header { margin-bottom:2rem; }
-  .admin-header h1 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:0.3rem; display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; }
-  .admin-badge { font-size:0.65rem; background:rgba(224,112,32,0.15); border:1px solid rgba(224,112,32,0.4); color:var(--accent2); border-radius:6px; padding:3px 8px; letter-spacing:0.08em; text-transform:uppercase; }
-  .admin-header p { color:var(--muted); font-size:0.9rem; }
-  .admin-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; margin-bottom:2rem; }
-  .stat-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem; text-align:center; }
-  .stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--accent); }
-  .stat-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-top:0.25rem; }
-  .responses-count-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
-  .responses-count-bar span { font-size:0.8rem; color:var(--muted); }
-  .response-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-bottom:1rem; transition:border-color 0.2s; }
-  .response-card:hover { border-color:rgba(240,192,64,0.25); }
-  .response-card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.5rem; }
-  .response-submitter { display:flex; align-items:center; gap:0.65rem; }
-  .response-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:700; color:#000; flex-shrink:0; }
-  .response-name { font-size:0.9rem; font-weight:600; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
-  .response-meta { font-size:0.72rem; color:var(--muted); margin-top:0.15rem; }
-  .response-vbadge { font-size:0.65rem; border-radius:4px; padding:2px 6px; }
-  .response-time { font-size:0.75rem; color:var(--muted); flex-shrink:0; }
-  .response-answers { display:grid; gap:0.75rem; }
-  .response-qa { background:var(--bg3); border-radius:8px; padding:0.9rem 1rem; border-left:3px solid var(--border); }
-  .response-q { font-size:0.7rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.35rem; }
-  .response-a { font-size:0.88rem; color:var(--text); line-height:1.6; }
-  .response-a.empty { color:var(--muted); font-style:italic; }
-  .no-responses { text-align:center; padding:3rem; color:var(--muted); }
-  .no-responses .icon { font-size:2.5rem; display:block; margin-bottom:0.75rem; }
-  .admin-loading { text-align:center; padding:3rem; color:var(--muted); font-size:0.9rem; }
+/* ─── GIFT / PAYMENT PAGE ─── */
+.gift-wrap{max-width:460px;margin:0 auto;padding:2rem 1.25rem 2.5rem;}
+.gift-header{text-align:center;margin-bottom:1.75rem;}
+.gift-header .gift-emoji{font-size:2.4rem;display:block;margin-bottom:0.5rem;}
+.gift-header h1{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:0.35rem;background:linear-gradient(135deg,#f0c040,#e07020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gift-header p{color:var(--muted);font-size:0.84rem;line-height:1.65;}
 
-  /* DIALOGS */
-  .dialog-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); z-index:1000; display:none; align-items:center; justify-content:center; padding:1rem; }
-  .dialog-overlay.open { display:flex; }
-  .dialog-box { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:2rem; max-width:480px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.6); animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1); max-height:90vh; overflow-y:auto; }
-  @keyframes popIn { from { transform:scale(0.9); opacity:0; } to { transform:scale(1); opacity:1; } }
-  .dialog-title { font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem; }
-  .dialog-body { color:var(--muted); font-size:0.88rem; line-height:1.7; margin-bottom:1.25rem; }
-  .dialog-checkbox-row { display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:1.25rem; cursor:pointer; }
-  .dialog-checkbox-row input[type=checkbox] { width:18px; height:18px; accent-color:var(--accent); cursor:pointer; flex-shrink:0; margin-top:2px; }
-  .dialog-checkbox-row span { font-size:0.85rem; color:var(--text); line-height:1.5; }
-  .donation-fields { display:none; flex-direction:column; gap:0.75rem; background:var(--bg3); border-radius:10px; padding:1rem; margin-bottom:1.25rem; border:1px solid rgba(240,192,64,0.2); }
-  .donation-fields.show { display:flex; }
-  .donation-fields label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.25rem; display:block; }
-  .donation-fields input,.donation-fields textarea { width:100%; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:0.6rem 0.8rem; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.9rem; resize:none; }
-  .donation-fields input:focus,.donation-fields textarea:focus { outline:none; border-color:var(--accent); }
-  .dialog-footer { display:flex; gap:0.75rem; justify-content:flex-end; }
-  .dialog-box::-webkit-scrollbar { width:4px; }
-  .dialog-box::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+/* Payment card */
+.pay-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:0.9rem;}
+.pay-card-header{padding:0.85rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.55rem;}
+.step-num{width:21px;height:21px;border-radius:50%;background:var(--accent);color:#000;font-size:0.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pay-card-header span{font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+.pay-card-body{padding:1.1rem;}
 
-  /* QR DIALOG — reworked with 2 buttons + conditional QR */
-  .qr-dialog-box { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:2rem; max-width:480px; width:100%; box-shadow:0 30px 80px rgba(0,0,0,0.7); animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1); max-height:90vh; overflow-y:auto; }
-  .qr-dialog-box::-webkit-scrollbar { width:4px; }
-  .qr-dialog-box::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
-  .qr-header { text-align:center; margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border); }
-  .qr-header .big-emoji { font-size:2.5rem; display:block; margin-bottom:0.5rem; }
-  .qr-header h2 { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:0.4rem; background:linear-gradient(135deg,#f0c040,#e07020); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .qr-header p { font-size:0.85rem; color:var(--muted); line-height:1.6; }
-  .qr-confirmation-badge { display:flex; align-items:center; gap:0.6rem; background:rgba(74,222,128,0.08); border:1px solid rgba(74,222,128,0.2); border-radius:10px; padding:0.7rem 1rem; margin-bottom:1.5rem; font-size:0.83rem; color:var(--verified); line-height:1.5; }
+/* Method selector */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0;}
+.method-btn{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:1rem 0.65rem;cursor:pointer;text-align:center;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:0.35rem;}
+.method-btn:hover{border-color:rgba(240,192,64,0.4);background:rgba(240,192,64,0.04);}
+.method-btn.selected{border-color:var(--accent);background:rgba(240,192,64,0.07);}
+.method-btn .m-icon{font-size:1.55rem;}
+.method-btn .m-name{font-size:0.84rem;font-weight:600;color:var(--text);}
+.method-btn .m-hint{font-size:0.68rem;color:var(--muted);}
 
-  /* Amount display */
-  .qr-amount-display { text-align:center; background:var(--bg3); border:1px solid rgba(240,192,64,0.2); border-radius:12px; padding:0.9rem 1rem; margin-bottom:1.25rem; }
-  .qr-amount-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.25rem; }
-  .qr-amount-value { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:var(--accent); }
-  .qr-amount-name { font-size:0.82rem; color:var(--muted); margin-top:0.2rem; }
+/* QR area */
+.qr-show-area{display:none;flex-direction:column;align-items:center;gap:0.7rem;padding:1.1rem;background:var(--bg3);border-radius:12px;margin-top:0.8rem;border:1px solid var(--border);animation:fadeIn 0.25s ease;}
+.qr-show-area.visible{display:flex;}
+.qr-frame{width:165px;height:165px;background:#fff;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.qr-frame img{width:100%;height:100%;object-fit:contain;}
+.qr-method-name{font-weight:700;font-size:0.92rem;color:var(--text);}
+.qr-method-sub{font-size:0.74rem;color:var(--muted);text-align:center;line-height:1.5;}
 
-  /* QR payment buttons */
-  .qr-method-btns { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem; }
-  .qr-method-btn { background:var(--bg3); border:2px solid var(--border); border-radius:14px; padding:0.9rem 0.75rem; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.2s; text-align:center; }
-  .qr-method-btn:hover { border-color:rgba(240,192,64,0.5); background:rgba(240,192,64,0.05); }
-  .qr-method-btn.active { border-color:var(--accent); background:rgba(240,192,64,0.08); }
-  .qr-method-icon { font-size:1.5rem; margin-bottom:0.3rem; }
-  .qr-method-name { font-size:0.88rem; font-weight:600; color:var(--text); }
-  .qr-method-hint { font-size:0.72rem; color:var(--muted); margin-top:0.15rem; }
+/* Amount input */
+.amount-big-wrap{position:relative;display:flex;align-items:center;border:2px solid var(--border);border-radius:12px;background:var(--bg3);overflow:hidden;transition:border-color 0.2s;}
+.amount-big-wrap:focus-within{border-color:var(--accent);}
+.amount-currency{padding:0 0.85rem;font-size:1.15rem;font-family:'Playfair Display',serif;color:var(--accent);font-weight:700;border-right:1px solid var(--border);background:rgba(240,192,64,0.06);align-self:stretch;display:flex;align-items:center;}
+.amount-big-wrap input{flex:1;background:transparent;border:none;outline:none;padding:0.82rem 1rem;font-size:1.3rem;font-family:'Playfair Display',serif;color:var(--text);font-weight:700;}
+.amount-big-wrap input::placeholder{color:var(--border);font-size:1rem;}
 
-  /* QR image area — below buttons */
-  .qr-image-area { display:none; flex-direction:column; align-items:center; gap:0.75rem; padding:1.25rem; background:var(--bg3); border:1px solid var(--border); border-radius:14px; margin-bottom:1.25rem; animation:fadeIn 0.25s ease; }
-  .qr-image-area.show { display:flex; }
-  .qr-img-wrap { width:180px; height:180px; background:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0; }
-  .qr-img-wrap img { width:100%; height:100%; object-fit:contain; }
-  .qr-selected-label { font-weight:700; font-size:1rem; color:var(--text); }
-  .qr-selected-hint { font-size:0.78rem; color:var(--muted); text-align:center; line-height:1.5; }
+/* Pay inputs */
+.pay-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:0.68rem 0.88rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;transition:border-color 0.2s;resize:none;}
+.pay-input:focus{outline:none;border-color:var(--accent);}
+.pay-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.32rem;display:block;}
+.pay-field{margin-bottom:0.82rem;}
+.pay-field:last-child{margin-bottom:0;}
 
-  .qr-disclaimer { font-size:0.78rem; color:var(--muted); background:var(--bg3); border-radius:8px; padding:0.7rem 0.9rem; line-height:1.6; margin-bottom:1.25rem; text-align:center; }
-  .qr-close-btn { width:100%; background:linear-gradient(135deg,#f0c040,#e07020); color:#000; border:none; border-radius:10px; padding:0.8rem; font-size:0.95rem; font-weight:700; cursor:pointer; font-family:'DM Sans',sans-serif; transition:opacity 0.2s; }
-  .qr-close-btn:hover { opacity:0.88; }
+/* Proof upload */
+.proof-upload-box{border:2px dashed var(--border);border-radius:10px;padding:1.4rem 1rem;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--bg3);}
+.proof-upload-box:hover,.proof-upload-box.drag{border-color:var(--accent);background:rgba(240,192,64,0.04);}
+.proof-upload-box.has-file{border-color:var(--verified);border-style:solid;background:rgba(74,222,128,0.04);}
+.proof-icon{font-size:1.5rem;margin-bottom:0.35rem;}
+.proof-label{font-size:0.84rem;color:var(--muted);}
+.proof-label strong{color:var(--accent);}
+.proof-preview-wrap{display:none;flex-direction:column;align-items:center;gap:0.55rem;margin-top:0.7rem;}
+.proof-preview-wrap.show{display:flex;}
+.proof-preview{width:100%;max-height:170px;object-fit:contain;border-radius:8px;background:var(--bg2);}
+.proof-remove-btn{font-size:0.73rem;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:0.28rem 0.65rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.proof-remove-btn:hover{color:var(--text);border-color:var(--muted);}
+#proof-file-input{display:none;}
 
-  /* MISC */
-  .toast { position:fixed; bottom:1.5rem; right:1.5rem; background:var(--bg3); border:1px solid var(--accent); border-radius:10px; padding:0.85rem 1.25rem; font-size:0.88rem; color:var(--text); z-index:2000; transform:translateY(80px); opacity:0; transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); max-width:320px; }
-  .toast.show { transform:translateY(0); opacity:1; }
-  @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
-  .floating { animation:float 3s ease-in-out infinite; }
-  ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:var(--bg); } ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-  .amount-prefix { position:relative; display:flex; align-items:center; }
-  .amount-prefix span { position:absolute; left:0.8rem; color:var(--muted); font-size:0.9rem; }
-  .amount-prefix input { padding-left:1.8rem !important; }
+/* Pay submit */
+.pay-submit-btn{width:100%;background:linear-gradient(135deg,#f0c040,#e07020);color:#000;border:none;border-radius:12px;padding:0.88rem;font-size:0.98rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s,transform 0.1s;margin-top:0.35rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+.pay-submit-btn:hover{opacity:0.88;}
+.pay-submit-btn:active{transform:scale(0.98);}
+.pay-submit-btn:disabled{opacity:0.4;cursor:not-allowed;}
+.pay-notice{font-size:0.75rem;color:var(--muted);background:var(--bg3);border-radius:8px;padding:0.62rem 0.88rem;line-height:1.6;text-align:center;margin-top:0.7rem;}
 
-  /* =============================================
-     📱 MOBILE BOTTOM NAV
-     ============================================= */
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    z-index: 200;
-    background: rgba(10,10,10,0.97);
-    backdrop-filter: blur(16px);
-    border-top: 1px solid var(--border);
-    padding: 0.4rem 0 calc(0.4rem + env(safe-area-inset-bottom));
-    justify-content: space-around;
-    align-items: center;
-  }
-  .mobile-nav-btn {
-    display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
-    background: none; border: none; color: var(--muted);
-    font-family: 'DM Sans', sans-serif; font-size: 0.62rem; cursor: pointer;
-    padding: 0.35rem 0.5rem; border-radius: 8px; transition: all 0.2s;
-    letter-spacing: 0.02em; min-width: 52px; flex:1;
-  }
-  .mobile-nav-btn .mn-icon { font-size: 1.25rem; line-height: 1; }
-  .mobile-nav-btn.active { color: var(--accent); }
-  .mobile-nav-btn.admin-mob { display: none; }
-  .mobile-nav-btn.admin-mob.visible { display: flex; }
+/* ─── ADMIN ─── */
+.admin-wrap{max-width:860px;margin:0 auto;padding:2rem 1.25rem 2.5rem;}
+.admin-header{margin-bottom:1.75rem;}
+.admin-header h1{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:0.25rem;display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;}
+.admin-badge{font-size:0.62rem;background:rgba(224,112,32,0.15);border:1px solid rgba(224,112,32,0.4);color:var(--accent2);border-radius:6px;padding:2px 7px;letter-spacing:0.08em;text-transform:uppercase;}
+.admin-header p{color:var(--muted);font-size:0.88rem;}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.85rem;margin-bottom:1.75rem;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;color:var(--accent);}
+.stat-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem;}
+.responses-count-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.responses-count-bar span{font-size:0.78rem;color:var(--muted);}
+.response-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:0.85rem;transition:border-color 0.2s;}
+.response-card:hover{border-color:rgba(240,192,64,0.25);}
+.response-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;}
+.response-submitter{display:flex;align-items:center;gap:0.6rem;}
+.response-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:#000;flex-shrink:0;}
+.response-name{font-size:0.88rem;font-weight:600;display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;}
+.response-meta{font-size:0.7rem;color:var(--muted);margin-top:0.12rem;}
+.response-vbadge{font-size:0.62rem;border-radius:4px;padding:2px 5px;}
+.response-time{font-size:0.72rem;color:var(--muted);flex-shrink:0;}
+.response-answers{display:grid;gap:0.65rem;}
+.response-qa{background:var(--bg3);border-radius:8px;padding:0.8rem 0.9rem;border-left:3px solid var(--border);}
+.response-q{font-size:0.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;}
+.response-a{font-size:0.86rem;color:var(--text);line-height:1.6;}
+.response-a.empty{color:var(--muted);font-style:italic;}
+.no-responses{text-align:center;padding:3rem;color:var(--muted);}
+.no-responses .icon{font-size:2.2rem;display:block;margin-bottom:0.65rem;}
+.admin-loading{text-align:center;padding:3rem;color:var(--muted);font-size:0.88rem;}
 
-  /* =============================================
-     📱 RESPONSIVE
-     ============================================= */
-  @media (max-width: 640px) {
-    .nav-tabs { display: none; }
-    .mobile-nav { display: flex; }
-    body { padding-bottom: 68px; }
+/* ─── COMMON BUTTONS ─── */
+.btn-primary{background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.65rem 1.4rem;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s,transform 0.1s;}
+.btn-primary:hover{opacity:0.88;}
+.btn-primary:active{transform:scale(0.98);}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:0.65rem 1.4rem;font-size:0.88rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;}
+.btn-ghost:hover{border-color:var(--muted);}
+.btn-row{display:flex;gap:0.65rem;}
 
-    nav.top-nav { padding: 0 1rem; height: 52px; gap: 0.5rem; }
-    .nav-logo { font-size: 0.9rem; }
-    .auth-btn { padding: 0.32rem 0.7rem; font-size: 0.78rem; }
-    .auth-btn.secondary { padding: 0.32rem 0.6rem; font-size: 0.72rem; }
-    .user-chip { padding: 0.22rem 0.55rem 0.22rem 0.22rem; font-size: 0.7rem; gap: 0.3rem; }
-    .verified-badge { display: none; }
+/* ─── DIALOGS ─── */
+.dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;}
+.dialog-overlay.open{display:flex;}
+.dialog-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;max-width:460px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,0.6);animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);max-height:90vh;overflow-y:auto;}
+.dialog-box::-webkit-scrollbar{width:3px;}
+.dialog-box::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+@keyframes popIn{from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}
+.dialog-title{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:0.65rem;display:flex;align-items:center;gap:0.5rem;}
+.dialog-body{color:var(--muted);font-size:0.86rem;line-height:1.7;margin-bottom:1.1rem;}
+.dialog-checkbox-row{display:flex;align-items:flex-start;gap:0.7rem;margin-bottom:1.1rem;cursor:pointer;}
+.dialog-checkbox-row input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;margin-top:2px;}
+.dialog-checkbox-row span{font-size:0.84rem;color:var(--text);line-height:1.5;}
+.donation-fields{display:none;flex-direction:column;gap:0.7rem;background:var(--bg3);border-radius:10px;padding:1rem;margin-bottom:1.1rem;border:1px solid rgba(240,192,64,0.18);}
+.donation-fields.show{display:flex;}
+.donation-fields label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;display:block;}
+.donation-fields input,.donation-fields textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.58rem 0.78rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;resize:none;}
+.donation-fields input:focus,.donation-fields textarea:focus{outline:none;border-color:var(--accent);}
+.dialog-footer{display:flex;gap:0.65rem;justify-content:flex-end;}
+.amount-prefix{position:relative;display:flex;align-items:center;}
+.amount-prefix span{position:absolute;left:0.75rem;color:var(--muted);font-size:0.88rem;pointer-events:none;}
+.amount-prefix input{padding-left:1.7rem!important;}
 
-    .home-hero { padding: 1.75rem 1rem 1.25rem; }
-    .hero-sub { font-size: 0.88rem; }
-    .confetti-row { font-size: 1.1rem; letter-spacing: 0.15rem; }
-    .home-grid { padding: 0 1rem 1.5rem; gap: 1rem; }
-    .slideshow-inner { height: 240px; }
-    .empty-slide-msg { height: 240px; }
-    .donations-list { max-height: 260px; }
+/* Gift success dialog */
+.qr-success-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem;max-width:380px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,0.7);animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);max-height:90vh;overflow-y:auto;}
+.qr-success-box::-webkit-scrollbar{width:3px;}
+.qr-success-header{text-align:center;margin-bottom:1.25rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border);}
+.qr-success-header .big-emoji{font-size:2.2rem;display:block;margin-bottom:0.4rem;}
+.qr-success-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:0.35rem;background:linear-gradient(135deg,#f0c040,#e07020);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.qr-success-header p{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+.success-badge{display:flex;align-items:center;gap:0.55rem;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:10px;padding:0.65rem 0.9rem;margin-bottom:1.25rem;font-size:0.8rem;color:var(--verified);line-height:1.5;}
+.disc-note{font-size:0.75rem;color:var(--muted);background:var(--bg3);border-radius:8px;padding:0.65rem 0.85rem;line-height:1.6;margin-bottom:1.1rem;text-align:center;}
+.qr-close-btn{width:100%;background:linear-gradient(135deg,#f0c040,#e07020);color:#000;border:none;border-radius:10px;padding:0.78rem;font-size:0.92rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
+.qr-close-btn:hover{opacity:0.88;}
 
-    .page-header { padding: 1.5rem 1rem 1rem; }
-    .page-header h1 { font-size: 1.6rem; }
-    .upload-zone { padding: 0 1rem 1.5rem; }
-    .upload-box { padding: 1.5rem 1rem; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.65rem; padding: 0 1rem 2rem; }
-    .gallery-card img { height: 130px; }
-    .gallery-card-body { padding: 0.7rem; }
-    .gallery-card-msg { font-size: 0.8rem; }
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;z-index:600;
+  left:50%;transform:translateX(-50%) translateY(20px);
+  bottom:calc(var(--mob-nav-h) + 0.85rem);
+  width:calc(100% - 2rem);max-width:340px;
+  background:var(--bg3);border:1px solid var(--accent);border-radius:10px;
+  padding:0.78rem 1.1rem;font-size:0.86rem;color:var(--text);
+  opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
-    .forms-wrap { padding: 1.5rem 1rem 5rem; }
-    .forms-header { margin-bottom: 1.5rem; }
-    .forms-header h1 { font-size: 1.6rem; }
-    .question-card { padding: 1.1rem; }
-    .question-text { font-size: 1rem; }
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 
-    .admin-wrap { padding: 1.5rem 1rem 5rem; }
-    .admin-header h1 { font-size: 1.5rem; }
-    .admin-stats { grid-template-columns: repeat(3,1fr); gap: 0.6rem; }
-    .stat-card { padding: 0.9rem 0.5rem; }
-    .stat-num { font-size: 1.5rem; }
-    .stat-label { font-size: 0.6rem; }
-    .response-card { padding: 1rem; }
-    .response-card-header { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
-    .response-qa { padding: 0.75rem; }
+/* ═══════════════════════════
+   RESPONSIVE
+═══════════════════════════ */
+/* Desktop: no bottom nav, no body bottom padding */
+@media(min-width:641px){
+  .mobile-nav{display:none!important;}
+  .toast{bottom:1rem;}
+}
 
-    .dialog-box { padding: 1.4rem 1.1rem; border-radius: 14px; }
-    .qr-dialog-box { padding: 1.4rem 1.1rem; border-radius: 14px; }
-    .qr-method-btns { gap: 0.6rem; }
-    .qr-img-wrap { width: 150px; height: 150px; }
-    .dialog-footer { flex-direction: column-reverse; }
-    .dialog-footer .btn-ghost,
-    .dialog-footer .btn-primary { width: 100%; text-align: center; }
+/* Tablet */
+@media(min-width:641px) and (max-width:900px){
+  .home-grid{grid-template-columns:1fr;}
+}
 
-    .toast { left: 1rem; right: 1rem; max-width: none; bottom: 5rem; }
-    .btn-row { flex-direction: column; }
-    .btn-row .btn-primary,
-    .btn-row .btn-ghost { width: 100%; text-align: center; }
+/* Mobile ≤640px */
+@media(max-width:640px){
+  /* Hide desktop tabs, show mobile nav */
+  .nav-tabs{display:none;}
+  .mobile-nav{display:flex;}
+  body{padding-bottom:var(--mob-nav-h);}
 
-    .name-row-controls { gap: 0.4rem; }
-    .anon-toggle-btn { font-size: 0.72rem; padding: 0.45rem 0.7rem; }
-  }
+  /* Slim top nav: just logo + auth */
+  .top-nav{padding:0 0.85rem;gap:0.5rem;}
+  .nav-logo{font-size:0.85rem;}
+  .auth-btn{padding:0.32rem 0.65rem;font-size:0.74rem;}
+  .auth-btn.secondary{padding:0.3rem 0.55rem;font-size:0.7rem;}
+  .user-chip{padding:0.2rem 0.5rem 0.2rem 0.2rem;font-size:0.68rem;gap:0.3rem;max-width:130px;overflow:hidden;}
+  .verified-badge{display:none;}
 
-  @media (max-width: 380px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-    .admin-stats { grid-template-columns: 1fr 1fr; }
-    .qr-method-btns { grid-template-columns: 1fr 1fr; }
-    .hero-title { font-size: 2rem; }
-    .qr-img-wrap { width: 130px; height: 130px; }
-  }
+  /* Home */
+  .home-hero{padding:1.5rem 1rem 1.25rem;}
+  .hero-sub{font-size:0.86rem;}
+  .confetti-row{font-size:1.1rem;letter-spacing:0.15rem;}
+  .home-grid{grid-template-columns:1fr;padding:0 1rem 1.5rem;gap:1rem;}
+  .slideshow-inner,.empty-slide-msg{height:210px;}
+  .donations-list{max-height:230px;}
 
-  @media (min-width: 641px) and (max-width: 900px) {
-    nav.top-nav { padding: 0 1.25rem; }
-    .home-grid { padding: 0 1.25rem 2rem; }
-    .home-hero { padding: 2.5rem 1.25rem 1.5rem; }
-    .gallery-grid { padding: 0 1.25rem 2rem; }
-    .upload-zone { padding: 0 1.25rem 1.5rem; }
-    .page-header { padding: 2rem 1.25rem 1rem; }
-    .forms-wrap { padding: 2rem 1.25rem 3rem; }
-    .admin-wrap { padding: 2rem 1.25rem 3rem; }
-  }
+  /* Gallery */
+  .page-header{padding:1.25rem 1rem 0.85rem;}
+  .page-header h1{font-size:1.5rem;}
+  .upload-zone{padding:0 1rem 1.25rem;}
+  .upload-box{padding:1.25rem 1rem;}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:0.5rem;padding:0 1rem 2rem;}
+  .gallery-card img{height:115px;}
+  .gallery-card-body{padding:0.6rem;}
+  .gallery-card-msg{font-size:0.76rem;}
+
+  /* Forms */
+  .forms-wrap{padding:1.25rem 1rem 2rem;}
+  .forms-header{margin-bottom:1.25rem;}
+  .forms-header h1{font-size:1.5rem;}
+  .question-card{padding:1rem;}
+  .question-text{font-size:0.98rem;}
+
+  /* Gift */
+  .gift-wrap{padding:1.25rem 1rem 2rem;}
+  .gift-header h1{font-size:1.5rem;}
+  .qr-frame{width:145px;height:145px;}
+  .amount-big-wrap input{font-size:1.1rem;}
+
+  /* Admin */
+  .admin-wrap{padding:1.25rem 1rem 2rem;}
+  .admin-header h1{font-size:1.5rem;}
+  .admin-stats{grid-template-columns:repeat(3,1fr);gap:0.5rem;}
+  .stat-card{padding:0.8rem 0.4rem;}
+  .stat-num{font-size:1.4rem;}
+  .stat-label{font-size:0.58rem;}
+  .response-card{padding:0.9rem;}
+  .response-card-header{flex-direction:column;align-items:flex-start;gap:0.3rem;}
+
+  /* Dialogs */
+  .dialog-box{padding:1.25rem 1rem;border-radius:14px;}
+  .qr-success-box{padding:1.4rem 1.1rem;border-radius:14px;}
+  .dialog-footer{flex-direction:column-reverse;}
+  .dialog-footer .btn-ghost,.dialog-footer .btn-primary{width:100%;text-align:center;}
+  .btn-row{flex-direction:column;}
+  .btn-row .btn-primary,.btn-row .btn-ghost{width:100%;text-align:center;}
+  .name-row-controls{flex-wrap:wrap;}
+}
+
+@media(max-width:380px){
+  .gallery-grid{grid-template-columns:1fr;}
+  .admin-stats{grid-template-columns:1fr 1fr;}
+  .hero-title{font-size:1.8rem;}
+}
 </style>
 </head>
 <body>
@@ -362,13 +426,14 @@
 <nav class="top-nav">
   <div class="nav-logo">🎂 Jeremee Cayde</div>
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="showTab('home',this)">Home</button>
-    <button class="tab-btn" onclick="showTab('gallery',this)">Gallery</button>
-    <button class="tab-btn" onclick="showTab('forms',this)">Forms</button>
-    <button class="tab-btn admin-tab" id="admin-tab-btn" onclick="showTab('responses',this)">👑 Responses</button>
+    <button class="tab-btn active"    data-tab="home"      onclick="showTab('home')">Home</button>
+    <button class="tab-btn"           data-tab="gallery"   onclick="showTab('gallery')">Gallery</button>
+    <button class="tab-btn"           data-tab="forms"     onclick="showTab('forms')">Forms</button>
+    <button class="tab-btn"           data-tab="gift"      onclick="showTab('gift')">🎁 Gift</button>
+    <button class="tab-btn admin-tab" data-tab="responses" id="admin-tab-btn" onclick="showTab('responses')">👑 Responses</button>
   </div>
   <div class="nav-auth" id="nav-auth">
-    <button class="auth-btn" onclick="signInWithGoogle()">Sign in with Google</button>
+    <button class="auth-btn" onclick="signInWithGoogle()">Sign in</button>
   </div>
 </nav>
 
@@ -382,7 +447,7 @@
   </div>
   <div class="home-grid">
     <div class="slideshow-wrap">
-      <div class="slideshow-label">📸 Memories from friends & family</div>
+      <div class="slideshow-label">📸 Memories from friends &amp; family</div>
       <div id="slideshow-container">
         <div class="empty-slide-msg"><span class="icon">🖼️</span><p>No photos yet! Be the first to upload a memory in the <strong>Gallery</strong> tab.</p></div>
       </div>
@@ -397,7 +462,7 @@
         </div>
       </div>
       <div class="donations-list" id="donations-list">
-        <div class="no-donations">🎁 No gifts yet... nudge nudge.<br><small style="color:var(--muted)">Go to <strong>Forms</strong> to send a message!</small></div>
+        <div class="no-donations">🎁 No gifts yet...<br><small style="color:var(--muted)">Go to <strong>Gift</strong> tab!</small></div>
       </div>
     </div>
   </div>
@@ -412,8 +477,8 @@
   <div class="upload-zone">
     <div class="upload-box" id="upload-box" onclick="document.getElementById('upload-file-input').click()">
       <div class="icon">📷</div>
-      <p><strong>Click to upload</strong> or drag & drop a photo</p>
-      <p style="font-size:0.8rem;margin-top:0.25rem">JPG, PNG, GIF up to 5MB</p>
+      <p><strong>Click to upload</strong> or drag &amp; drop a photo</p>
+      <p style="font-size:0.78rem;margin-top:0.2rem">JPG, PNG, GIF up to 5MB</p>
     </div>
     <input type="file" id="upload-file-input" accept="image/*" onchange="onFileSelected(event)"/>
     <div class="upload-form-inner" id="upload-form">
@@ -423,7 +488,7 @@
         <input type="text" id="gallery-uploader" placeholder="Anonymous"/>
       </div>
       <div class="form-field">
-        <label>Your Email <span style="color:var(--muted);font-size:0.75rem;text-transform:none;letter-spacing:0">(optional — for a thank-you email)</span></label>
+        <label>Your Email <span style="color:var(--muted);font-size:0.72rem;text-transform:none;letter-spacing:0">(optional — for a thank-you email)</span></label>
         <input type="email" id="gallery-email" placeholder="you@example.com"/>
       </div>
       <div class="form-field">
@@ -432,7 +497,7 @@
       </div>
       <div class="btn-row">
         <button class="btn-primary" onclick="submitGalleryPhoto()">Upload Photo 🚀</button>
-        <button class="btn-ghost" onclick="cancelUpload()">Cancel</button>
+        <button class="btn-ghost"   onclick="cancelUpload()">Cancel</button>
       </div>
     </div>
   </div>
@@ -446,23 +511,16 @@
   <div class="forms-wrap">
     <div class="forms-header">
       <h1>🎂 Birthday Questions</h1>
-      <p>Answer a few fun questions for the birthday boy! Sign in to get a verified badge, or stay anonymous — your choice.</p>
+      <p>Answer a few fun questions for the birthday boy! Sign in to get a verified badge, or stay anonymous.</p>
     </div>
-
-    <!-- Name row for forms -->
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1rem;">
-      <div class="name-row">
-        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;">Submitting as</div>
-        <div class="name-row-controls">
-          <div class="name-input-wrap">
-            <input type="text" id="form-display-name" placeholder="Your name..." oninput="onFormNameInput()"/>
-          </div>
-          <button class="anon-toggle-btn" id="form-anon-btn" onclick="toggleFormAnon()">Go Anonymous</button>
-        </div>
-        <div class="anon-uid-hint" id="form-anon-hint"></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1.1rem;margin-bottom:0.85rem;">
+      <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;">Submitting as</div>
+      <div class="name-row-controls">
+        <div class="name-input-wrap"><input type="text" id="form-display-name" placeholder="Your name..." oninput="onFormNameInput()"/></div>
+        <button class="anon-toggle-btn" id="form-anon-btn" onclick="toggleFormAnon()">Go Anonymous</button>
       </div>
+      <div class="anon-uid-hint" id="form-anon-hint"></div>
     </div>
-
     <div class="anon-note"><span>🕵️</span><span id="anon-status-text">You're answering anonymously. Sign in to get a ✅ verified badge!</span></div>
     <div class="question-card">
       <div class="question-label">Question 1</div>
@@ -485,12 +543,109 @@
       <div class="form-field"><textarea id="q4" rows="3" placeholder="Make it a good one!"></textarea></div>
     </div>
     <div class="submit-row">
-      <button class="btn-primary" onclick="openDonationDialog()">Save & Submit 🎉</button>
+      <button class="btn-primary" onclick="openDonationDialog()">Save &amp; Submit 🎉</button>
     </div>
   </div>
 </div>
 
-<!-- ADMIN: RESPONSES -->
+<!-- GIFT / PAYMENT PAGE -->
+<div id="page-gift" class="page">
+  <div class="gift-wrap">
+    <div class="gift-header">
+      <span class="gift-emoji">🎁</span>
+      <h1>Send a Gift</h1>
+      <p>Make Jeremee's day extra special! Choose a payment method, scan the QR code, then upload your proof of payment to confirm.</p>
+    </div>
+
+    <!-- Step 1: Choose method -->
+    <div class="pay-card">
+      <div class="pay-card-header">
+        <div class="step-num">1</div>
+        <span>Choose Payment Method</span>
+      </div>
+      <div class="pay-card-body">
+        <div class="method-grid">
+          <button class="method-btn" id="gift-btn-gcash" onclick="selectGiftMethod('gcash')">
+            <span class="m-icon">📱</span>
+            <span class="m-name">GCash</span>
+            <span class="m-hint">Scan &amp; Pay</span>
+          </button>
+          <button class="method-btn" id="gift-btn-bank" onclick="selectGiftMethod('bank')">
+            <span class="m-icon">🏦</span>
+            <span class="m-name">Bank Transfer</span>
+            <span class="m-hint">Scan &amp; Pay</span>
+          </button>
+        </div>
+        <div class="qr-show-area" id="gift-qr-area">
+          <div class="qr-frame"><img id="gift-qr-img" src="" alt="QR Code"/></div>
+          <div class="qr-method-name" id="gift-qr-label"></div>
+          <div class="qr-method-sub"  id="gift-qr-sub"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Details -->
+    <div class="pay-card">
+      <div class="pay-card-header">
+        <div class="step-num">2</div>
+        <span>Gift Details</span>
+      </div>
+      <div class="pay-card-body">
+        <div class="pay-field">
+          <label class="pay-label">Your Name</label>
+          <div class="name-row-controls">
+            <div class="name-input-wrap"><input class="pay-input" type="text" id="gift-name" placeholder="Your name..." oninput="onGiftNameInput()"/></div>
+            <button class="anon-toggle-btn" id="gift-anon-btn" onclick="toggleGiftAnon()">Go Anonymous</button>
+          </div>
+          <div class="anon-uid-hint" id="gift-anon-hint"></div>
+        </div>
+        <div class="pay-field">
+          <label class="pay-label">Email Address <span style="color:var(--accent)">*</span></label>
+          <input class="pay-input" type="email" id="gift-email" placeholder="you@example.com"/>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:0.28rem;">📧 Confirmation email sent only after proof is verified.</div>
+        </div>
+        <div class="pay-field">
+          <label class="pay-label">Amount (₱)</label>
+          <div class="amount-big-wrap">
+            <span class="amount-currency">₱</span>
+            <input type="number" id="gift-amount" placeholder="0.00" min="1" step="0.01"/>
+          </div>
+        </div>
+        <div class="pay-field">
+          <label class="pay-label">Birthday Message <span style="color:var(--muted);font-size:0.68rem;text-transform:none;letter-spacing:0">(optional)</span></label>
+          <textarea class="pay-input" id="gift-msg" rows="2" placeholder="Happy birthday Jeremee! 🎂"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Proof -->
+    <div class="pay-card">
+      <div class="pay-card-header">
+        <div class="step-num">3</div>
+        <span>Upload Proof of Payment</span>
+      </div>
+      <div class="pay-card-body">
+        <div class="proof-upload-box" id="proof-upload-box" onclick="document.getElementById('proof-file-input').click()">
+          <div class="proof-icon">📎</div>
+          <div class="proof-label" id="proof-label-text"><strong>Click to upload</strong> your payment screenshot</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:0.22rem;">JPG, PNG up to 5MB · <strong style="color:var(--accent2)">Required to submit</strong></div>
+        </div>
+        <input type="file" id="proof-file-input" accept="image/*" onchange="onProofSelected(event)"/>
+        <div class="proof-preview-wrap" id="proof-preview-wrap">
+          <img src="" alt="proof" class="proof-preview" id="proof-preview"/>
+          <button class="proof-remove-btn" onclick="removeProof()">✕ Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="pay-submit-btn" id="gift-submit-btn" onclick="submitGift()">
+      <span>🚀</span> Send Gift
+    </button>
+    <div class="pay-notice">🙏 <strong>Not a requirement</strong> — just a heartfelt way to celebrate Jeremee's birthday! Thank you and Be Safe Always. 💛</div>
+  </div>
+</div>
+
+<!-- ADMIN RESPONSES -->
 <div id="page-responses" class="page">
   <div class="admin-wrap">
     <div class="admin-header">
@@ -498,44 +653,35 @@
       <p>All birthday form submissions from your guests, sorted by most recent.</p>
     </div>
     <div class="admin-stats">
-      <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total Responses</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-verified">—</div><div class="stat-label">Verified (Google)</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-verified">—</div><div class="stat-label">Verified</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-anon">—</div><div class="stat-label">Anonymous</div></div>
     </div>
-    <div class="responses-count-bar">
-      <span id="responses-count-label">Loading responses...</span>
-    </div>
+    <div class="responses-count-bar"><span id="responses-count-label">Loading...</span></div>
     <div id="responses-list"><div class="admin-loading">⏳ Loading responses...</div></div>
   </div>
 </div>
 
-<!-- DONATION DIALOG -->
+<!-- FORMS DONATION DIALOG -->
 <div class="dialog-overlay" id="donation-dialog">
   <div class="dialog-box">
     <div class="dialog-title">🎁 One More Thing...</div>
-    <div class="dialog-body">Thank you so much for sharing your wishes for Jeremee! Your message means the world. 💛</div>
+    <div class="dialog-body">Thank you for sharing your wishes for Jeremee! Your message means the world. 💛</div>
     <label class="dialog-checkbox-row">
       <input type="checkbox" id="donate-checkbox" onchange="toggleDonationFields()"/>
-      <span>I'd also like to send a gift or donation to Jeremee (because why not, it's his birthday! 🥳)</span>
+      <span>I'd also like to include a donation note (optional)</span>
     </label>
-    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;background:var(--bg3);border-radius:8px;padding:0.7rem 0.9rem;line-height:1.6;">
-      ☑️ This message is <strong>not requiring</strong> you to send gifts, but rather just a reminder of the celebration of his birthday. Thank you for your cooperation! Thank you and Be Safe Always. 🙏
+    <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.9rem;background:var(--bg3);border-radius:8px;padding:0.65rem 0.85rem;line-height:1.6;">
+      ☑️ <strong>Not required</strong> — just a celebration reminder. Thank you and Be Safe Always. 🙏
     </div>
     <div class="donation-fields" id="donation-fields">
-      <!-- Donor name with anon toggle -->
       <div>
         <label>Your Name</label>
         <div class="name-row-controls" style="margin-top:0.1rem;">
-          <div class="name-input-wrap">
-            <input type="text" id="donate-name" placeholder="Anonymous" oninput="onDonateNameInput()"/>
-          </div>
+          <div class="name-input-wrap"><input type="text" id="donate-name" placeholder="Anonymous" oninput="onDonateNameInput()"/></div>
           <button class="anon-toggle-btn" id="donate-anon-btn" onclick="toggleDonateAnon()">Go Anonymous</button>
         </div>
-        <div class="anon-uid-hint" id="donate-anon-hint" style="margin-top:0.3rem;"></div>
-      </div>
-      <div>
-        <label>Your Email <span style="color:var(--accent)">*</span> <span style="color:var(--muted);font-size:0.7rem;text-transform:none;letter-spacing:0">(for confirmation)</span></label>
-        <input type="email" id="donate-email" placeholder="you@example.com"/>
+        <div class="anon-uid-hint" id="donate-anon-hint" style="margin-top:0.28rem;"></div>
       </div>
       <div>
         <label>Amount (₱)</label>
@@ -547,640 +693,310 @@
       </div>
     </div>
     <div class="dialog-footer">
-      <button class="btn-ghost" onclick="closeDonationDialog()">Maybe Later</button>
-      <button class="btn-primary" onclick="submitForm()">Send it! 🚀</button>
+      <button class="btn-ghost"   onclick="closeDonationDialog()">Maybe Later</button>
+      <button class="btn-primary" onclick="submitFormOnly()">Send it! 🚀</button>
     </div>
   </div>
 </div>
 
-<!-- QR DIALOG — reworked: amount shown, then 2 buttons, then QR appears below -->
-<div class="dialog-overlay" id="qr-dialog">
-  <div class="qr-dialog-box">
-    <div class="qr-header">
+<!-- GIFT SUCCESS DIALOG -->
+<div class="dialog-overlay" id="gift-success-dialog">
+  <div class="qr-success-box">
+    <div class="qr-success-header">
       <span class="big-emoji">🎉</span>
-      <h2>Thank You So Much!</h2>
-      <p>Your form has been saved! If you sent a donation, scan one of the QR codes below to complete your payment. 😄</p>
+      <h2>Gift Received!</h2>
+      <p>Your proof of payment has been uploaded and recorded. Jeremee will be notified, and you'll get a confirmation email once it's verified!</p>
     </div>
-    <div class="qr-confirmation-badge">✅ &nbsp;<span>Your answers have been recorded. A confirmation email is on its way!</span></div>
-
-    <!-- Amount display (only shown when donation was made) -->
-    <div class="qr-amount-display" id="qr-amount-block" style="display:none;">
-      <div class="qr-amount-label">Your Donation</div>
-      <div class="qr-amount-value" id="qr-amount-val">₱0.00</div>
-      <div class="qr-amount-name" id="qr-amount-name"></div>
-    </div>
-
-    <!-- 2 QR method buttons -->
-    <div id="qr-payment-section" style="display:none;">
-      <div style="font-size:0.8rem;color:var(--muted);text-align:center;margin-bottom:0.75rem;letter-spacing:0.05em;text-transform:uppercase;">Choose payment method</div>
-      <div class="qr-method-btns">
-        <button class="qr-method-btn" id="btn-gcash" onclick="selectQrMethod('gcash')">
-          <div class="qr-method-icon">📱</div>
-          <div class="qr-method-name">GCash</div>
-          <div class="qr-method-hint">Tap to show QR</div>
-        </button>
-        <button class="qr-method-btn" id="btn-bank" onclick="selectQrMethod('bank')">
-          <div class="qr-method-icon">🏦</div>
-          <div class="qr-method-name">Bank Transfer</div>
-          <div class="qr-method-hint">Tap to show QR</div>
-        </button>
-      </div>
-
-      <!-- QR image appears here, below the buttons -->
-      <div class="qr-image-area" id="qr-image-area">
-        <div class="qr-img-wrap">
-          <img id="qr-display-img" src="" alt="QR Code"/>
-        </div>
-        <div class="qr-selected-label" id="qr-selected-label"></div>
-        <div class="qr-selected-hint" id="qr-selected-hint"></div>
-      </div>
-    </div>
-
-    <div class="qr-disclaimer">🙏 This is <strong>not a requirement</strong> — just a gentle reminder that it's Jeremee's birthday! Thank you for your cooperation and <strong>Be Safe Always.</strong></div>
-    <button class="qr-close-btn" onclick="closeQrDialog()">Done — Thanks for celebrating with Jeremee! 🎂</button>
+    <div class="success-badge">✅ &nbsp;<span>Proof uploaded successfully. Confirmation email sent after admin review.</span></div>
+    <div class="disc-note">🙏 Thank you for celebrating with Jeremee! <strong>Be Safe Always.</strong></div>
+    <button class="qr-close-btn" onclick="closeGiftSuccess()">Done — Thanks! 🎂</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <!-- MOBILE BOTTOM NAV -->
-<nav class="mobile-nav" id="mobile-nav">
-  <button class="mobile-nav-btn active" id="mob-home" onclick="showTab('home',this);syncDesktopTab('home')">
-    <span class="mn-icon">🏠</span>Home
-  </button>
-  <button class="mobile-nav-btn" id="mob-gallery" onclick="showTab('gallery',this);syncDesktopTab('gallery')">
-    <span class="mn-icon">📸</span>Gallery
-  </button>
-  <button class="mobile-nav-btn" id="mob-forms" onclick="showTab('forms',this);syncDesktopTab('forms')">
-    <span class="mn-icon">📝</span>Forms
-  </button>
-  <button class="mobile-nav-btn admin-mob" id="admin-mob-btn" onclick="showTab('responses',this);syncDesktopTab('responses')">
-    <span class="mn-icon">👑</span>Responses
-  </button>
+<nav class="mobile-nav">
+  <button class="mob-btn active" data-tab="home"      onclick="showTab('home')"><span class="mi">🏠</span>Home</button>
+  <button class="mob-btn"        data-tab="gallery"   onclick="showTab('gallery')"><span class="mi">📸</span>Gallery</button>
+  <button class="mob-btn"        data-tab="forms"     onclick="showTab('forms')"><span class="mi">📝</span>Forms</button>
+  <button class="mob-btn"        data-tab="gift"      onclick="showTab('gift')"><span class="mi">🎁</span>Gift</button>
+  <button class="mob-btn admin-mob" data-tab="responses" id="mob-responses" onclick="showTab('responses')"><span class="mi">👑</span>Admin</button>
 </nav>
 
 <script>window.__emailjs = emailjs;</script>
-
 <script type="module">
-  import { initializeApp }     from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp }
-                               from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
-                               from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { initializeApp }  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  const ejs = window.__emailjs;
+const ejs = window.__emailjs;
+const IMGBB_API_KEY             = "289dc066edbe15b7103ac08aebf61ea3";
+const EMAILJS_PUBLIC_KEY        = "wGSRduC5qILn1qEIX";
+const EMAILJS_SERVICE_ID        = "service_stkmotm";
+const EMAILJS_TEMPLATE_DONATION = "template_i3g2pqk";
+const EMAILJS_TEMPLATE_GALLERY  = "YOUR_GALLERY_TEMPLATE_ID";
+const JEREMEE_EMAIL             = "caydejeremee@gmail.com";
+const ADMIN_EMAIL               = "caydejeremee@gmail.com";
 
-  const firebaseConfig = {
-    apiKey:            "AIzaSyCLpv3E1DS4xVhH4xTEcA_wwixwOMVJBp0",
-    authDomain:        "caydethebirthdayboy.firebaseapp.com",
-    projectId:         "caydethebirthdayboy",
-    storageBucket:     "caydethebirthdayboy.firebasestorage.app",
-    messagingSenderId: "1034191891434",
-    appId:             "1:1034191891434:web:129df87a9d396b776ae093",
-    measurementId:     "G-F0GGE3YGGK"
-  };
+ejs.init(EMAILJS_PUBLIC_KEY);
+const app      = initializeApp({apiKey:"AIzaSyCLpv3E1DS4xVhH4xTEcA_wwixwOMVJBp0",authDomain:"caydethebirthdayboy.firebaseapp.com",projectId:"caydethebirthdayboy",storageBucket:"caydethebirthdayboy.firebasestorage.app",messagingSenderId:"1034191891434",appId:"1:1034191891434:web:129df87a9d396b776ae093"});
+const db       = getFirestore(app);
+const auth     = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-  const IMGBB_API_KEY             = "289dc066edbe15b7103ac08aebf61ea3";
-  const EMAILJS_PUBLIC_KEY        = "wGSRduC5qILn1qEIX";
-  const EMAILJS_SERVICE_ID        = "service_stkmotm";
-  const EMAILJS_TEMPLATE_DONATION = "template_i3g2pqk";
-  const EMAILJS_TEMPLATE_GALLERY  = "YOUR_GALLERY_TEMPLATE_ID";
-  const JEREMEE_EMAIL             = "caydejeremee@gmail.com";
-  const ADMIN_EMAIL               = "caydejeremee@gmail.com";
+let currentUser = null;
+let selectedGalleryFile = null;
+let selectedProofFile   = null;
+let responsesUnsub      = null;
+let _giftMethod         = null;
 
-  ejs.init(EMAILJS_PUBLIC_KEY);
-  const app      = initializeApp(firebaseConfig);
-  const db       = getFirestore(app);
-  const auth     = getAuth(app);
-  const provider = new GoogleAuthProvider();
+// UID
+function genUID(n=3){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let u='';for(let i=0;i<n;i++)u+=c[Math.floor(Math.random()*c.length)];return u;}
+let _formAnonUID='',_donateAnonUID='',_giftAnonUID='';
+let _formIsAnon=false,_donateIsAnon=false,_giftIsAnon=false;
 
-  let currentUser          = null;
-  let selectedFile         = null;
-  let responsesUnsubscribe = null;
+function resolveFormName(){if(_formIsAnon)return`Anonymous ${_formAnonUID}`;const v=document.getElementById('form-display-name').value.trim();return v||(currentUser?.displayName||`Anonymous ${genUID()}`);}
+function resolveDonorName(){if(_donateIsAnon)return`Anonymous ${_donateAnonUID}`;const v=document.getElementById('donate-name').value.trim();return v||(currentUser?.displayName||`Anonymous ${genUID()}`);}
+function resolveGiftName(){if(_giftIsAnon)return`Anonymous ${_giftAnonUID}`;const v=document.getElementById('gift-name').value.trim();return v||(currentUser?.displayName||`Anonymous ${genUID()}`);}
 
-  // ── UID generator ─────────────────────────────────
-  function genUID(len = 3) {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let uid = '';
-    for (let i = 0; i < len; i++) uid += chars[Math.floor(Math.random() * chars.length)];
-    return uid;
-  }
-  let _formAnonUID  = genUID();
-  let _donateAnonUID = genUID();
-  let _formIsAnon   = false;
-  let _donateIsAnon = false;
-
-  // ── NAME HELPERS ──────────────────────────────────
-  function resolveFormName() {
-    if (_formIsAnon) return `Anonymous ${_formAnonUID}`;
-    const v = document.getElementById('form-display-name').value.trim();
-    return v || (currentUser?.displayName || `Anonymous ${genUID()}`);
-  }
-  function resolveDonorName() {
-    if (_donateIsAnon) return `Anonymous ${_donateAnonUID}`;
-    const v = document.getElementById('donate-name').value.trim();
-    return v || (currentUser?.displayName || `Anonymous ${genUID()}`);
-  }
-
-  window.onFormNameInput = () => {
-    if (_formIsAnon) {
-      _formIsAnon = false;
-      document.getElementById('form-anon-btn').classList.remove('is-anon');
-      document.getElementById('form-anon-hint').textContent = '';
-      document.getElementById('form-anon-btn').textContent = 'Go Anonymous';
+// Generic anon toggle factory
+function makeAnon(prefix,isAnonRef,uidRef,inputId){
+  return{
+    onInput:()=>{
+      if(isAnonRef.v){isAnonRef.v=false;const b=document.getElementById(`${prefix}-anon-btn`);if(b){b.classList.remove('is-anon');b.textContent='Go Anonymous';}const h=document.getElementById(`${prefix}-anon-hint`);if(h)h.textContent='';}
+    },
+    toggle:()=>{
+      isAnonRef.v=!isAnonRef.v;
+      const btn=document.getElementById(`${prefix}-anon-btn`);
+      const hint=document.getElementById(`${prefix}-anon-hint`);
+      const inp=document.getElementById(inputId);
+      if(isAnonRef.v){uidRef.v=genUID();inp.value=`Anonymous ${uidRef.v}`;inp.disabled=true;btn.textContent='Use my name';btn.classList.add('is-anon');hint.textContent=`You'll appear as Anonymous ${uidRef.v}`;}
+      else{inp.value=currentUser?.displayName||'';inp.disabled=false;btn.textContent='Go Anonymous';btn.classList.remove('is-anon');hint.textContent='';}
     }
   };
-  window.toggleFormAnon = () => {
-    _formIsAnon = !_formIsAnon;
-    const btn  = document.getElementById('form-anon-btn');
-    const hint = document.getElementById('form-anon-hint');
-    const inp  = document.getElementById('form-display-name');
-    if (_formIsAnon) {
-      _formAnonUID = genUID();
-      inp.value = `Anonymous ${_formAnonUID}`;
-      inp.disabled = true;
-      btn.textContent = 'Use my name';
-      btn.classList.add('is-anon');
-      hint.textContent = `You'll appear as Anonymous ${_formAnonUID}`;
-    } else {
-      inp.value = currentUser?.displayName || '';
-      inp.disabled = false;
-      btn.textContent = 'Go Anonymous';
-      btn.classList.remove('is-anon');
-      hint.textContent = '';
-    }
-  };
+}
+const formAnonRef={v:false},formUID={v:''};
+const donateAnonRef={v:false},donateUID={v:''};
+const giftAnonRef={v:false},giftUID={v:''};
+_formIsAnon=false; // use refs now
 
-  window.onDonateNameInput = () => {
-    if (_donateIsAnon) {
-      _donateIsAnon = false;
-      document.getElementById('donate-anon-btn').classList.remove('is-anon');
-      document.getElementById('donate-anon-hint').textContent = '';
-      document.getElementById('donate-anon-btn').textContent = 'Go Anonymous';
-    }
-  };
-  window.toggleDonateAnon = () => {
-    _donateIsAnon = !_donateIsAnon;
-    const btn  = document.getElementById('donate-anon-btn');
-    const hint = document.getElementById('donate-anon-hint');
-    const inp  = document.getElementById('donate-name');
-    if (_donateIsAnon) {
-      _donateAnonUID = genUID();
-      inp.value = `Anonymous ${_donateAnonUID}`;
-      inp.disabled = true;
-      btn.textContent = 'Use my name';
-      btn.classList.add('is-anon');
-      hint.textContent = `You'll appear as Anonymous ${_donateAnonUID}`;
-    } else {
-      inp.value = currentUser?.displayName || '';
-      inp.disabled = false;
-      btn.textContent = 'Go Anonymous';
-      btn.classList.remove('is-anon');
-      hint.textContent = '';
-    }
-  };
+const fA=makeAnon('form',formAnonRef,formUID,'form-display-name');
+const dA=makeAnon('donate',donateAnonRef,donateUID,'donate-name');
+const gA=makeAnon('gift',giftAnonRef,giftUID,'gift-name');
+window.onFormNameInput=fA.onInput; window.toggleFormAnon=fA.toggle;
+window.onDonateNameInput=dA.onInput; window.toggleDonateAnon=dA.toggle;
+window.onGiftNameInput=gA.onInput;  window.toggleGiftAnon=gA.toggle;
 
-  // ── AUTH ──────────────────────────────────────────
-  window.signInWithGoogle = async () => {
-    try { await signInWithPopup(auth, provider); }
-    catch(e) { showToast("Sign-in failed. Try again."); }
-  };
-  window.signOutUser = async () => {
-    await signOut(auth);
-    showToast("Signed out. See you around! 👋");
-  };
+function getFormName(){if(formAnonRef.v)return`Anonymous ${formUID.v}`;const v=document.getElementById('form-display-name').value.trim();return v||(currentUser?.displayName||`Anonymous ${genUID()}`);}
+function getDonorName(){if(donateAnonRef.v)return`Anonymous ${donateUID.v}`;const v=document.getElementById('donate-name').value.trim();return v||(currentUser?.displayName||`Anonymous ${genUID()}`);}
+function getGiftName(){if(giftAnonRef.v)return`Anonymous ${giftUID.v}`;const v=document.getElementById('gift-name').value.trim();return v||(currentUser?.displayName||`Anonymous ${genUID()}`);}
 
-  onAuthStateChanged(auth, user => {
-    currentUser = user;
-    const authEl   = document.getElementById('nav-auth');
-    const anonText = document.getElementById('anon-status-text');
-    const adminTab = document.getElementById('admin-tab-btn');
-    const isAdmin  = user?.email === ADMIN_EMAIL;
+// AUTH
+window.signInWithGoogle=async()=>{try{await signInWithPopup(auth,provider);}catch(e){showToast("Sign-in failed. Try again.");}};
+window.signOutUser=async()=>{await signOut(auth);showToast("Signed out 👋");};
 
-    // Sync name fields with Google name
-    const nameInp   = document.getElementById('form-display-name');
-    const donateInp = document.getElementById('donate-name');
-    if (!_formIsAnon  && nameInp)   nameInp.value   = user?.displayName || '';
-    if (!_donateIsAnon && donateInp) donateInp.value = user?.displayName || '';
-
-    if (user) {
-      authEl.innerHTML = `
-        <div class="user-chip">
-          <div style="width:26px;height:26px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:#000;">
-            ${user.photoURL ? `<img src="${user.photoURL}" style="width:26px;height:26px;object-fit:cover;"/>` : (user.displayName||'U')[0].toUpperCase()}
-          </div>
-          <span>${user.displayName?.split(' ')[0]||'User'}</span>
-          <span class="verified-badge">✅</span>
-          ${isAdmin ? '<span style="font-size:0.65rem;color:var(--accent2);">👑</span>' : ''}
-        </div>
-        <button class="auth-btn secondary" onclick="signOutUser()">Sign Out</button>`;
-      if (anonText) anonText.textContent = `Signed in as ${user.displayName} ✅ — your responses will be verified!`;
-      if (isAdmin) {
-        adminTab.classList.add('visible');
-        document.getElementById('admin-mob-btn')?.classList.add('visible');
-        startResponsesListener();
-      } else {
-        adminTab.classList.remove('visible');
-        document.getElementById('admin-mob-btn')?.classList.remove('visible');
-      }
-    } else {
-      authEl.innerHTML = `<button class="auth-btn" onclick="signInWithGoogle()">Sign in with Google</button>`;
-      if (anonText) anonText.textContent = "You're answering anonymously. Sign in to get a ✅ verified badge!";
-      adminTab.classList.remove('visible');
-      document.getElementById('admin-mob-btn')?.classList.remove('visible');
-      if (responsesUnsubscribe) { responsesUnsubscribe(); responsesUnsubscribe = null; }
-    }
-  });
-
-  // ── RESPONSES LISTENER ────────────────────────────
-  function startResponsesListener() {
-    if (responsesUnsubscribe) return;
-    const q = query(collection(db, 'formResponses'), orderBy('timestamp', 'desc'));
-    responsesUnsubscribe = onSnapshot(q, snap => {
-      renderResponses(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-    }, err => {
-      console.error(err);
-      document.getElementById('responses-list').innerHTML =
-        `<div class="admin-loading" style="color:var(--accent2);">⚠️ Could not load responses. Check Firestore rules.</div>`;
-    });
+onAuthStateChanged(auth,user=>{
+  currentUser=user;
+  const authEl=document.getElementById('nav-auth');
+  const anonTxt=document.getElementById('anon-status-text');
+  const adminTab=document.getElementById('admin-tab-btn');
+  const adminMob=document.getElementById('mob-responses');
+  const isAdmin=user?.email===ADMIN_EMAIL;
+  ['form-display-name','donate-name','gift-name'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.disabled)el.value=user?.displayName||'';});
+  if(user){
+    authEl.innerHTML=`<div class="user-chip"><div style="width:24px;height:24px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#000;">${user.photoURL?`<img src="${user.photoURL}" style="width:24px;height:24px;object-fit:cover;"/>`:(user.displayName||'U')[0].toUpperCase()}</div><span>${user.displayName?.split(' ')[0]||'User'}</span><span class="verified-badge">✅</span>${isAdmin?'<span style="font-size:0.62rem;color:var(--accent2);">👑</span>':''}</div><button class="auth-btn secondary" onclick="signOutUser()">Out</button>`;
+    if(anonTxt)anonTxt.textContent=`Signed in as ${user.displayName} ✅ — verified!`;
+    if(isAdmin){adminTab.classList.add('visible');adminMob?.classList.add('visible');startResponsesListener();}
+    else{adminTab.classList.remove('visible');adminMob?.classList.remove('visible');}
+  }else{
+    authEl.innerHTML=`<button class="auth-btn" onclick="signInWithGoogle()">Sign in</button>`;
+    if(anonTxt)anonTxt.textContent="Answering anonymously. Sign in for ✅ verified badge!";
+    adminTab.classList.remove('visible');adminMob?.classList.remove('visible');
+    if(responsesUnsub){responsesUnsub();responsesUnsub=null;}
   }
+});
 
-  function renderResponses(items) {
-    const list         = document.getElementById('responses-list');
-    const label        = document.getElementById('responses-count-label');
-    const statTotal    = document.getElementById('stat-total');
-    const statVerified = document.getElementById('stat-verified');
-    const statAnon     = document.getElementById('stat-anon');
-    const verified     = items.filter(r => r.verified).length;
-    statTotal.textContent    = items.length;
-    statVerified.textContent = verified;
-    statAnon.textContent     = items.length - verified;
-    label.textContent        = `${items.length} response${items.length !== 1 ? 's' : ''} received`;
-    if (!items.length) {
-      list.innerHTML = `<div class="no-responses"><span class="icon">📭</span><p>No responses yet. Share the site with your guests!</p></div>`;
-      return;
-    }
-    const QUESTIONS = [
-      'How long have you known Jeremee?',
-      "What are the best moments you've had with him?",
-      'How do you consider your relationship with Jeremee?',
-      'What is your wish for Jeremee?'
-    ];
-    list.innerHTML = items.map(r => {
-      const tsDate = r.timestamp?.toDate
-        ? r.timestamp.toDate().toLocaleString('en-PH', { timeZone:'Asia/Manila', dateStyle:'medium', timeStyle:'short' }) : '';
-      const ts      = r.timestamp?.toDate ? timeAgo(r.timestamp.toDate()) : 'just now';
-      const initial = (r.submitterName || 'A')[0].toUpperCase();
-      const vbadge  = r.verified
-        ? `<span class="response-vbadge" style="color:var(--verified);background:rgba(74,222,128,0.1);">✅ Verified</span>`
-        : `<span class="response-vbadge" style="color:var(--muted);background:rgba(255,255,255,0.05);">👤 Anonymous</span>`;
-      const answers = [r.q1, r.q2, r.q3, r.q4].map((a, i) => `
-        <div class="response-qa">
-          <div class="response-q">Q${i+1} — ${escHtml(QUESTIONS[i])}</div>
-          <div class="response-a ${a ? '' : 'empty'}">${a ? escHtml(a) : '(no answer provided)'}</div>
-        </div>`).join('');
-      return `
-        <div class="response-card">
-          <div class="response-card-header">
-            <div class="response-submitter">
-              <div class="response-avatar">${initial}</div>
-              <div>
-                <div class="response-name">${escHtml(r.submitterName || 'Anonymous')} ${vbadge}</div>
-                <div class="response-meta">${tsDate}</div>
-              </div>
-            </div>
-            <div class="response-time">${ts}</div>
-          </div>
-          <div class="response-answers">${answers}</div>
-        </div>`;
-    }).join('');
-  }
+// RESPONSES
+function startResponsesListener(){
+  if(responsesUnsub)return;
+  const q=query(collection(db,'formResponses'),orderBy('timestamp','desc'));
+  responsesUnsub=onSnapshot(q,snap=>renderResponses(snap.docs.map(d=>({id:d.id,...d.data()}))),
+    ()=>{document.getElementById('responses-list').innerHTML=`<div class="admin-loading" style="color:var(--accent2);">⚠️ Could not load. Check Firestore rules.</div>`;});
+}
+function renderResponses(items){
+  const list=document.getElementById('responses-list');
+  document.getElementById('stat-total').textContent=items.length;
+  const vf=items.filter(r=>r.verified).length;
+  document.getElementById('stat-verified').textContent=vf;
+  document.getElementById('stat-anon').textContent=items.length-vf;
+  document.getElementById('responses-count-label').textContent=`${items.length} response${items.length!==1?'s':''} received`;
+  if(!items.length){list.innerHTML=`<div class="no-responses"><span class="icon">📭</span><p>No responses yet.</p></div>`;return;}
+  const QS=['How long have you known Jeremee?',"Best moments you've had with him?",'Your relationship with Jeremee?','Your wish for Jeremee?'];
+  list.innerHTML=items.map(r=>{
+    const ts=r.timestamp?.toDate?timeAgo(r.timestamp.toDate()):'just now';
+    const tsDate=r.timestamp?.toDate?r.timestamp.toDate().toLocaleString('en-PH',{timeZone:'Asia/Manila',dateStyle:'medium',timeStyle:'short'}):'';
+    const init=(r.submitterName||'A')[0].toUpperCase();
+    const vb=r.verified?`<span class="response-vbadge" style="color:var(--verified);background:rgba(74,222,128,0.1);">✅ Verified</span>`:`<span class="response-vbadge" style="color:var(--muted);background:rgba(255,255,255,0.05);">👤 Anon</span>`;
+    const ans=[r.q1,r.q2,r.q3,r.q4].map((a,i)=>`<div class="response-qa"><div class="response-q">Q${i+1} — ${escHtml(QS[i])}</div><div class="response-a ${a?'':'empty'}">${a?escHtml(a):'(no answer)'}</div></div>`).join('');
+    return `<div class="response-card"><div class="response-card-header"><div class="response-submitter"><div class="response-avatar">${init}</div><div><div class="response-name">${escHtml(r.submitterName||'Anonymous')} ${vb}</div><div class="response-meta">${tsDate}</div></div></div><div class="response-time">${ts}</div></div><div class="response-answers">${ans}</div></div>`;
+  }).join('');
+}
 
-  // ── DONATIONS LISTENER ────────────────────────────
-  onSnapshot(query(collection(db, 'donations'), orderBy('timestamp', 'desc')), snap => {
-    renderDonations(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-  });
-  function renderDonations(items) {
-    const list    = document.getElementById('donations-list');
-    const totalEl = document.getElementById('total-amount');
-    if (!items.length) {
-      list.innerHTML = `<div class="no-donations">🎁 No gifts yet... nudge nudge.<br><small>Go to <strong>Forms</strong> to send a message!</small></div>`;
-      totalEl.textContent = '₱0.00'; return;
-    }
-    let total = 0;
-    list.innerHTML = items.map(d => {
-      total += parseFloat(d.amount || 0);
-      const initial = (d.name || 'A')[0].toUpperCase();
-      const ts      = d.timestamp?.toDate ? timeAgo(d.timestamp.toDate()) : 'just now';
-      const vbadge  = d.verified
-        ? `<span class="vbadge">✅</span>`
-        : `<span class="vbadge" style="color:var(--muted);background:rgba(255,255,255,0.05)">👤</span>`;
-      return `
-        <div class="donation-item">
-          <div class="donation-avatar">${initial}</div>
-          <div class="donation-info">
-            <div class="donation-name">${escHtml(d.name||'Anonymous')} ${vbadge}</div>
-            <div class="donation-msg">${escHtml(d.message||'🎂 Happy Birthday!')}</div>
-          </div>
-          <div class="donation-meta">
-            <div class="donation-amount">₱${parseFloat(d.amount||0).toFixed(2)}</div>
-            <div class="donation-time">${ts}</div>
-          </div>
-        </div>`;
-    }).join('');
-    totalEl.textContent = '₱' + total.toFixed(2);
-  }
+// DONATIONS
+onSnapshot(query(collection(db,'donations'),orderBy('timestamp','desc')),snap=>renderDonations(snap.docs.map(d=>({id:d.id,...d.data()}))));
+function renderDonations(items){
+  const list=document.getElementById('donations-list');
+  const tot=document.getElementById('total-amount');
+  if(!items.length){list.innerHTML=`<div class="no-donations">🎁 No gifts yet...<br><small>Go to <strong>Gift</strong> tab!</small></div>`;tot.textContent='₱0.00';return;}
+  let total=0;
+  list.innerHTML=items.map(d=>{total+=parseFloat(d.amount||0);const init=(d.name||'A')[0].toUpperCase();const ts=d.timestamp?.toDate?timeAgo(d.timestamp.toDate()):'just now';const vb=d.verified?`<span class="vbadge">✅</span>`:`<span class="vbadge" style="color:var(--muted)">👤</span>`;return`<div class="donation-item"><div class="donation-avatar">${init}</div><div class="donation-info"><div class="donation-name">${escHtml(d.name||'Anonymous')} ${vb}</div><div class="donation-msg">${escHtml(d.message||'🎂 Happy Birthday!')}</div></div><div class="donation-meta"><div class="donation-amount">₱${parseFloat(d.amount||0).toFixed(2)}</div><div class="donation-time">${ts}</div></div></div>`;}).join('');
+  tot.textContent='₱'+total.toFixed(2);
+}
 
-  // ── GALLERY LISTENER ──────────────────────────────
-  onSnapshot(query(collection(db, 'gallery'), orderBy('timestamp', 'desc')), snap => {
-    const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderGallery(items);
-    renderSlideshow(items);
-  });
-  function renderGallery(items) {
-    const grid = document.getElementById('gallery-grid');
-    if (!items.length) {
-      grid.innerHTML = `<div class="empty-gallery"><span class="icon">🖼️</span><p>No photos yet. Be the first to share a memory!</p></div>`;
-      return;
-    }
-    grid.innerHTML = items.map(p => {
-      const ts = p.timestamp?.toDate ? timeAgo(p.timestamp.toDate()) : 'just now';
-      const vb = p.verified ? `<span style="color:var(--verified)">✅</span>` : '';
-      return `
-        <div class="gallery-card">
-          <img src="${escHtml(p.imageUrl)}" alt="memory" loading="lazy"/>
-          <div class="gallery-card-body">
-            <div class="gallery-card-uploader">${escHtml(p.uploader||'Anonymous')} ${vb}</div>
-            <div class="gallery-card-msg">${escHtml(p.message)}</div>
-            <div class="gallery-card-time">${ts}</div>
-          </div>
-        </div>`;
-    }).join('');
-  }
+// GALLERY
+onSnapshot(query(collection(db,'gallery'),orderBy('timestamp','desc')),snap=>{const items=snap.docs.map(d=>({id:d.id,...d.data()}));renderGallery(items);renderSlideshow(items);});
+function renderGallery(items){const grid=document.getElementById('gallery-grid');if(!items.length){grid.innerHTML=`<div class="empty-gallery"><span class="icon">🖼️</span><p>No photos yet.</p></div>`;return;}grid.innerHTML=items.map(p=>{const ts=p.timestamp?.toDate?timeAgo(p.timestamp.toDate()):'just now';const vb=p.verified?`<span style="color:var(--verified)">✅</span>`:'';return`<div class="gallery-card"><img src="${escHtml(p.imageUrl)}" alt="memory" loading="lazy"/><div class="gallery-card-body"><div class="gallery-card-uploader">${escHtml(p.uploader||'Anonymous')} ${vb}</div><div class="gallery-card-msg">${escHtml(p.message)}</div><div class="gallery-card-time">${ts}</div></div></div>`;}).join('');}
 
-  let slideIndex = 0, slideTimer = null;
-  function renderSlideshow(items) {
-    const container = document.getElementById('slideshow-container');
-    const dots      = document.getElementById('slide-dots');
-    if (!items.length) {
-      container.innerHTML = `<div class="empty-slide-msg"><span class="icon">🖼️</span><p>No photos yet! Be the first to upload in the <strong>Gallery</strong> tab.</p></div>`;
-      dots.innerHTML = ''; return;
-    }
-    const inner = document.createElement('div');
-    inner.className = 'slideshow-inner';
-    items.forEach((p, i) => {
-      const slide = document.createElement('div');
-      slide.className = 'slide' + (i === 0 ? ' active' : '');
-      slide.innerHTML = `<img src="${escHtml(p.imageUrl)}" alt="memory"/>
-        <div class="slide-caption">
-          <div class="uploader">📸 ${escHtml(p.uploader||'Anonymous')}</div>
-          <div class="msg">${escHtml(p.message)}</div>
-        </div>`;
-      inner.appendChild(slide);
-    });
-    container.innerHTML = ''; container.appendChild(inner);
-    dots.innerHTML = items.map((_,i) => `<div class="dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`).join('');
-    if (slideTimer) clearInterval(slideTimer);
-    slideIndex = 0;
-    slideTimer = setInterval(() => goSlide((slideIndex + 1) % items.length), 4000);
-  }
-  window.goSlide = n => {
-    const slides = document.querySelectorAll('.slide');
-    const dotEls = document.querySelectorAll('.dot');
-    if (!slides.length) return;
-    slides[slideIndex]?.classList.remove('active'); dotEls[slideIndex]?.classList.remove('active');
-    slideIndex = n;
-    slides[slideIndex]?.classList.add('active'); dotEls[slideIndex]?.classList.add('active');
-  };
+let slideIndex=0,slideTimer=null;
+function renderSlideshow(items){const container=document.getElementById('slideshow-container');const dots=document.getElementById('slide-dots');if(!items.length){container.innerHTML=`<div class="empty-slide-msg"><span class="icon">🖼️</span><p>No photos yet! Upload in <strong>Gallery</strong>.</p></div>`;dots.innerHTML='';return;}const inner=document.createElement('div');inner.className='slideshow-inner';items.forEach((p,i)=>{const s=document.createElement('div');s.className='slide'+(i===0?' active':'');s.innerHTML=`<img src="${escHtml(p.imageUrl)}" alt="memory"/><div class="slide-caption"><div class="uploader">📸 ${escHtml(p.uploader||'Anonymous')}</div><div class="msg">${escHtml(p.message)}</div></div>`;inner.appendChild(s);});container.innerHTML='';container.appendChild(inner);dots.innerHTML=items.map((_,i)=>`<div class="dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`).join('');if(slideTimer)clearInterval(slideTimer);slideIndex=0;slideTimer=setInterval(()=>goSlide((slideIndex+1)%items.length),4200);}
+window.goSlide=n=>{const sl=document.querySelectorAll('.slide'),dt=document.querySelectorAll('.dot');if(!sl.length)return;sl[slideIndex]?.classList.remove('active');dt[slideIndex]?.classList.remove('active');slideIndex=n;sl[slideIndex]?.classList.add('active');dt[slideIndex]?.classList.add('active');};
 
-  // ── EMAILJS ───────────────────────────────────────
-  async function sendDonationEmails({ name, email, amount, message }) {
-    const now = new Date().toLocaleString('en-PH', { timeZone:'Asia/Manila', dateStyle:'long', timeStyle:'short' });
-    const p   = { sender_name:name, sender_email:email, amount:`₱${parseFloat(amount).toFixed(2)}`, bday_message:message, timestamp:now, jeremee_email:JEREMEE_EMAIL };
-    const sends = [];
-    if (email) sends.push(ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, { ...p, to_email:email, to_name:name, email_type:'sender_thankyou' }).catch(e => console.warn(e)));
-    sends.push(ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_DONATION, { ...p, to_email:JEREMEE_EMAIL, to_name:'Jeremee', email_type:'jeremee_notification' }).catch(e => console.warn(e)));
-    await Promise.all(sends);
-  }
-  async function sendGalleryEmails({ uploader, email }) {
-    const now = new Date().toLocaleString('en-PH', { timeZone:'Asia/Manila', dateStyle:'long', timeStyle:'short' });
-    const p   = { uploader_name:uploader, uploader_email:email||'(not provided)', timestamp:now, jeremee_email:JEREMEE_EMAIL };
-    const sends = [];
-    if (email) sends.push(ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, { ...p, to_email:email, to_name:uploader, email_type:'sender_thankyou' }).catch(e => console.warn(e)));
-    sends.push(ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GALLERY, { ...p, to_email:JEREMEE_EMAIL, to_name:'Jeremee', email_type:'jeremee_notification' }).catch(e => console.warn(e)));
-    await Promise.all(sends);
-  }
+// ImgBB
+async function uploadToImgBB(file){const fd=new FormData();fd.append('image',file);const res=await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`,{method:'POST',body:fd});const data=await res.json();if(!data.success)throw new Error(data.error?.message||'Upload failed');return data.data.url;}
 
-  // ── IMGBB ─────────────────────────────────────────
-  async function uploadToImgBB(file) {
-    const fd = new FormData();
-    fd.append('image', file);
-    const res  = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method:'POST', body:fd });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.error?.message || 'ImgBB upload failed');
-    return data.data.url;
-  }
+// EmailJS
+async function sendGiftNotification({name,email,amount,message,proofUrl,method}){
+  const now=new Date().toLocaleString('en-PH',{timeZone:'Asia/Manila',dateStyle:'long',timeStyle:'short'});
+  const p={sender_name:name,sender_email:email,amount:`₱${parseFloat(amount).toFixed(2)}`,bday_message:message,timestamp:now,proof_url:proofUrl,payment_method:method,jeremee_email:JEREMEE_EMAIL};
+  const sends=[];
+  // Notify Jeremee immediately
+  sends.push(ejs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_DONATION,{...p,to_email:JEREMEE_EMAIL,to_name:'Jeremee',email_type:'jeremee_gift_notification'}).catch(e=>console.warn(e)));
+  // Sender gets a "received, pending review" email only (NOT a confirmed email yet)
+  if(email) sends.push(ejs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_DONATION,{...p,to_email:email,to_name:name,email_type:'sender_proof_received'}).catch(e=>console.warn(e)));
+  await Promise.all(sends);
+}
+async function sendGalleryEmails({uploader,email}){const now=new Date().toLocaleString('en-PH',{timeZone:'Asia/Manila',dateStyle:'long',timeStyle:'short'});const p={uploader_name:uploader,uploader_email:email||'(not provided)',timestamp:now,jeremee_email:JEREMEE_EMAIL};const sends=[];if(email)sends.push(ejs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_GALLERY,{...p,to_email:email,to_name:uploader,email_type:'sender_thankyou'}).catch(e=>console.warn(e)));sends.push(ejs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_GALLERY,{...p,to_email:JEREMEE_EMAIL,to_name:'Jeremee',email_type:'jeremee_notification'}).catch(e=>console.warn(e)));await Promise.all(sends);}
 
-  // ── GALLERY UPLOAD ────────────────────────────────
-  window.onFileSelected = e => {
-    const file = e.target.files[0]; if (!file) return;
-    selectedFile = file;
-    const reader = new FileReader();
-    reader.onload = ev => { document.getElementById('upload-preview').src = ev.target.result; document.getElementById('upload-form').classList.add('show'); };
-    reader.readAsDataURL(file);
-  };
-  window.cancelUpload = () => {
-    selectedFile = null;
-    document.getElementById('upload-form').classList.remove('show');
-    ['upload-file-input','gallery-msg','gallery-uploader','gallery-email'].forEach(id => { document.getElementById(id).value = ''; });
-  };
-  window.submitGalleryPhoto = async () => {
-    const msg = document.getElementById('gallery-msg').value.trim();
-    if (!selectedFile)                       { showToast("Please select a photo first!"); return; }
-    if (!msg)                                 { showToast("Please add a short message!"); return; }
-    if (selectedFile.size > 5*1024*1024)     { showToast("Photo must be under 5MB! 📷"); return; }
-    const uploader = document.getElementById('gallery-uploader').value.trim() || (currentUser?.displayName || 'Anonymous');
-    const email    = document.getElementById('gallery-email').value.trim()    || (currentUser?.email       || '');
-    showToast("Uploading photo... ⏳");
-    try {
-      const imageUrl = await uploadToImgBB(selectedFile);
-      await addDoc(collection(db, 'gallery'), { imageUrl, uploader, message:msg, verified:!!currentUser, timestamp:serverTimestamp() });
-      sendGalleryEmails({ uploader, email });
-      showToast("Photo uploaded! 🎉");
-      cancelUpload();
-    } catch(e) { console.error(e); showToast("Upload failed: " + e.message); }
-  };
+// GALLERY UPLOAD
+window.onFileSelected=e=>{const file=e.target.files[0];if(!file)return;selectedGalleryFile=file;const r=new FileReader();r.onload=ev=>{document.getElementById('upload-preview').src=ev.target.result;document.getElementById('upload-form').classList.add('show');};r.readAsDataURL(file);};
+window.cancelUpload=()=>{selectedGalleryFile=null;document.getElementById('upload-form').classList.remove('show');['upload-file-input','gallery-msg','gallery-uploader','gallery-email'].forEach(id=>document.getElementById(id).value='');};
+window.submitGalleryPhoto=async()=>{const msg=document.getElementById('gallery-msg').value.trim();if(!selectedGalleryFile){showToast("Please select a photo first!");return;}if(!msg){showToast("Please add a short message!");return;}if(selectedGalleryFile.size>5*1024*1024){showToast("Photo must be under 5MB!");return;}const uploader=document.getElementById('gallery-uploader').value.trim()||(currentUser?.displayName||'Anonymous');const email=document.getElementById('gallery-email').value.trim()||(currentUser?.email||'');showToast("Uploading... ⏳");try{const imageUrl=await uploadToImgBB(selectedGalleryFile);await addDoc(collection(db,'gallery'),{imageUrl,uploader,message:msg,verified:!!currentUser,timestamp:serverTimestamp()});sendGalleryEmails({uploader,email});showToast("Photo uploaded! 🎉");cancelUpload();}catch(e){showToast("Upload failed: "+e.message);}};
 
-  // ── FORM SUBMIT ───────────────────────────────────
-  window.openDonationDialog = () => {
-    if (!document.getElementById('q1').value.trim()) { showToast("Please answer at least Question 1! 😊"); return; }
-    document.getElementById('donation-dialog').classList.add('open');
-  };
-  window.closeDonationDialog = () => { document.getElementById('donation-dialog').classList.remove('open'); };
-  window.closeQrDialog       = () => {
-    document.getElementById('qr-dialog').classList.remove('open');
-    // reset QR selection
-    document.getElementById('qr-image-area').classList.remove('show');
-    document.querySelectorAll('.qr-method-btn').forEach(b => b.classList.remove('active'));
-  };
-  window.toggleDonationFields = () => {
-    document.getElementById('donation-fields').classList.toggle('show', document.getElementById('donate-checkbox').checked);
-  };
+// GIFT PAGE
+window.selectGiftMethod=method=>{
+  _giftMethod=method;
+  document.querySelectorAll('.method-btn').forEach(b=>b.classList.remove('selected'));
+  document.getElementById(`gift-btn-${method}`).classList.add('selected');
+  const area=document.getElementById('gift-qr-area');
+  const img=document.getElementById('gift-qr-img');
+  const label=document.getElementById('gift-qr-label');
+  const sub=document.getElementById('gift-qr-sub');
+  if(method==='gcash'){img.src='gcash.jpeg';img.alt='GCash QR';label.textContent='GCash';sub.textContent='Open GCash → Pay QR · Any amount welcome 💛';}
+  else{img.src='bank.jpeg';img.alt='Bank Transfer QR';label.textContent='Bank Transfer';sub.textContent='Open your banking app → Scan to transfer 💛';}
+  area.classList.add('visible');
+};
 
-  // ── QR METHOD SELECT ─────────────────────────────
-  window.selectQrMethod = method => {
-    const imgEl    = document.getElementById('qr-display-img');
-    const labelEl  = document.getElementById('qr-selected-label');
-    const hintEl   = document.getElementById('qr-selected-hint');
-    const area     = document.getElementById('qr-image-area');
-    document.querySelectorAll('.qr-method-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(method === 'gcash' ? 'btn-gcash' : 'btn-bank').classList.add('active');
-    if (method === 'gcash') {
-      imgEl.src    = 'gcash.jpeg';
-      imgEl.alt    = 'GCash QR';
-      labelEl.textContent = 'GCash';
-      hintEl.textContent  = 'Open GCash → Scan QR · Any amount welcome 💛';
-    } else {
-      imgEl.src    = 'bank.jpeg';
-      imgEl.alt    = 'Bank Transfer QR';
-      labelEl.textContent = 'Bank Transfer';
-      hintEl.textContent  = 'Open your banking app and scan to transfer 💛';
-    }
-    area.classList.add('show');
-    // smooth scroll to QR inside the dialog
-    setTimeout(() => area.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
-  };
+window.onProofSelected=e=>{
+  const file=e.target.files?.[0]||e;
+  if(!file||!file.size)return;
+  if(file.size>5*1024*1024){showToast("Proof must be under 5MB!");return;}
+  selectedProofFile=file;
+  const r=new FileReader();r.onload=ev=>{
+    document.getElementById('proof-preview').src=ev.target.result;
+    document.getElementById('proof-preview-wrap').classList.add('show');
+    const box=document.getElementById('proof-upload-box');
+    box.classList.add('has-file');
+    document.getElementById('proof-label-text').innerHTML='<strong style="color:var(--verified)">✅ Proof uploaded!</strong> Click to replace.';
+  };r.readAsDataURL(file);
+};
+window.removeProof=()=>{selectedProofFile=null;document.getElementById('proof-file-input').value='';document.getElementById('proof-preview-wrap').classList.remove('show');document.getElementById('proof-upload-box').classList.remove('has-file');document.getElementById('proof-label-text').innerHTML='<strong>Click to upload</strong> your payment screenshot';};
 
-  window.submitForm = async () => {
-    const q1 = document.getElementById('q1').value.trim();
-    const q2 = document.getElementById('q2').value.trim();
-    const q3 = document.getElementById('q3').value.trim();
-    const q4 = document.getElementById('q4').value.trim();
-    const isDonating = document.getElementById('donate-checkbox').checked;
-    const submitterName = resolveFormName();
+window.submitGift=async()=>{
+  if(!_giftMethod){showToast("Please select a payment method first! 👆");return;}
+  const amount=parseFloat(document.getElementById('gift-amount').value);
+  const email=document.getElementById('gift-email').value.trim();
+  if(!amount||amount<=0){showToast("Please enter a valid amount!");return;}
+  if(!email){showToast("Please enter your email address! 📧");return;}
+  if(!selectedProofFile){showToast("Please upload proof of payment to proceed! 📎");return;}
+  const name=getGiftName();
+  const msg=document.getElementById('gift-msg').value.trim()||'🎂 Happy Birthday Jeremee!';
+  const btn=document.getElementById('gift-submit-btn');
+  btn.disabled=true;btn.innerHTML='<span>⏳</span> Uploading proof...';
+  try{
+    const proofUrl=await uploadToImgBB(selectedProofFile);
+    await addDoc(collection(db,'donations'),{name,amount,message:msg,paymentMethod:_giftMethod,proofUrl,email,verified:!!currentUser,proofVerified:false,timestamp:serverTimestamp()});
+    await sendGiftNotification({name,email,amount,message:msg,proofUrl,method:_giftMethod});
+    // Reset form
+    ['gift-amount','gift-email','gift-msg'].forEach(id=>document.getElementById(id).value='');
+    if(!giftAnonRef.v)document.getElementById('gift-name').value=currentUser?.displayName||'';
+    removeProof();
+    document.querySelectorAll('.method-btn').forEach(b=>b.classList.remove('selected'));
+    document.getElementById('gift-qr-area').classList.remove('visible');
+    _giftMethod=null;
+    document.getElementById('gift-success-dialog').classList.add('open');
+  }catch(e){showToast("Submit failed: "+e.message);}finally{btn.disabled=false;btn.innerHTML='<span>🚀</span> Send Gift';}
+};
+window.closeGiftSuccess=()=>document.getElementById('gift-success-dialog').classList.remove('open');
 
-    try {
-      await addDoc(collection(db, 'formResponses'), {
-        submitterName,
-        submitterEmail: currentUser?.email || null,
-        verified: !!currentUser,
-        q1, q2, q3, q4,
-        timestamp: serverTimestamp()
-      });
-    } catch(e) {
-      console.error('Save response failed:', e);
-      showToast("Error saving your responses. Check Firestore rules.");
-      return;
-    }
+// FORMS DIALOG
+window.openDonationDialog=()=>{if(!document.getElementById('q1').value.trim()){showToast("Please answer at least Question 1! 😊");return;}document.getElementById('donation-dialog').classList.add('open');};
+window.closeDonationDialog=()=>document.getElementById('donation-dialog').classList.remove('open');
+window.toggleDonationFields=()=>document.getElementById('donation-fields').classList.toggle('show',document.getElementById('donate-checkbox').checked);
 
-    let donationAmount = 0;
-    let donorNameFinal = '';
-    if (isDonating) {
-      donationAmount = parseFloat(document.getElementById('donate-amount').value);
-      const msg  = document.getElementById('donate-msg').value.trim()  || '🎂 Happy Birthday Jeremee!';
-      const name = resolveDonorName();
-      donorNameFinal = name;
-      const email = document.getElementById('donate-email').value.trim() || (currentUser?.email || '');
-      if (!donationAmount || donationAmount <= 0) { showToast("Please enter a valid amount!"); return; }
-      if (!email) { showToast("Please enter your email for confirmation! 📧"); return; }
-      try {
-        await addDoc(collection(db, 'donations'), { name, amount:donationAmount, message:msg, verified:!!currentUser, timestamp:serverTimestamp() });
-        sendDonationEmails({ name, email, amount:donationAmount, message:msg });
-      } catch(e) { console.error(e); showToast("Error saving donation."); return; }
-    }
+window.submitFormOnly=async()=>{
+  const q1=document.getElementById('q1').value.trim(),q2=document.getElementById('q2').value.trim(),q3=document.getElementById('q3').value.trim(),q4=document.getElementById('q4').value.trim();
+  const submitterName=getFormName();
+  try{await addDoc(collection(db,'formResponses'),{submitterName,submitterEmail:currentUser?.email||null,verified:!!currentUser,q1,q2,q3,q4,timestamp:serverTimestamp()});}
+  catch(e){showToast("Error saving responses. Try again.");return;}
+  const isDonating=document.getElementById('donate-checkbox').checked;
+  if(isDonating){const amount=parseFloat(document.getElementById('donate-amount').value);const msg=document.getElementById('donate-msg').value.trim()||'🎂 Happy Birthday Jeremee!';const name=getDonorName();if(amount>0){try{await addDoc(collection(db,'donations'),{name,amount,message:msg,verified:!!currentUser,timestamp:serverTimestamp()});}catch(e){console.error(e);}}}
+  closeDonationDialog();
+  document.getElementById('donate-checkbox').checked=false;
+  document.getElementById('donation-fields').classList.remove('show');
+  ['donate-amount','donate-msg','q1','q2','q3','q4'].forEach(id=>document.getElementById(id).value='');
+  ['form-anon-btn','donate-anon-btn'].forEach(id=>{const b=document.getElementById(id);if(b){b.classList.remove('is-anon');b.textContent='Go Anonymous';}});
+  ['form-anon-hint','donate-anon-hint'].forEach(id=>{const h=document.getElementById(id);if(h)h.textContent='';});
+  ['form-display-name','donate-name'].forEach(id=>{const el=document.getElementById(id);if(el){el.disabled=false;el.value=currentUser?.displayName||'';}});
+  formAnonRef.v=false;donateAnonRef.v=false;
+  showToast("Responses saved! Thank you! 🎉");
+};
 
-    closeDonationDialog();
-    document.getElementById('donate-checkbox').checked = false;
-    document.getElementById('donation-fields').classList.remove('show');
-    ['donate-amount','donate-email','donate-msg','q1','q2','q3','q4'].forEach(id => { document.getElementById(id).value = ''; });
-    // reset donor name fields
-    if (!_donateIsAnon) document.getElementById('donate-name').value = currentUser?.displayName || '';
-    _donateIsAnon = false;
-    document.getElementById('donate-anon-btn').classList.remove('is-anon');
-    document.getElementById('donate-anon-btn').textContent = 'Go Anonymous';
-    document.getElementById('donate-anon-hint').textContent = '';
-    if (document.getElementById('donate-name')) document.getElementById('donate-name').disabled = false;
+// HELPERS
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+window.showToast=showToast;
+function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function timeAgo(d){const s=Math.floor((Date.now()-d)/1000);if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';}
 
-    // reset form name
-    _formIsAnon = false;
-    document.getElementById('form-anon-btn').classList.remove('is-anon');
-    document.getElementById('form-anon-btn').textContent = 'Go Anonymous';
-    document.getElementById('form-anon-hint').textContent = '';
-    document.getElementById('form-display-name').disabled = false;
-    document.getElementById('form-display-name').value = currentUser?.displayName || '';
+// Drag-drop gallery
+const ub=document.getElementById('upload-box');
+ub.addEventListener('dragover',e=>{e.preventDefault();ub.classList.add('drag');});
+ub.addEventListener('dragleave',()=>ub.classList.remove('drag'));
+ub.addEventListener('drop',e=>{e.preventDefault();ub.classList.remove('drag');const file=e.dataTransfer.files[0];if(file?.type.startsWith('image/')){selectedGalleryFile=file;const r=new FileReader();r.onload=ev=>{document.getElementById('upload-preview').src=ev.target.result;document.getElementById('upload-form').classList.add('show');};r.readAsDataURL(file);}});
 
-    // Show QR dialog with amount if donated
-    setTimeout(() => {
-      const amountBlock   = document.getElementById('qr-amount-block');
-      const paymentSection = document.getElementById('qr-payment-section');
-      if (isDonating && donationAmount > 0) {
-        document.getElementById('qr-amount-val').textContent  = `₱${donationAmount.toFixed(2)}`;
-        document.getElementById('qr-amount-name').textContent = `from ${donorNameFinal}`;
-        amountBlock.style.display    = 'block';
-        paymentSection.style.display = 'block';
-      } else {
-        amountBlock.style.display    = 'none';
-        paymentSection.style.display = 'none';
-      }
-      document.getElementById('qr-dialog').classList.add('open');
-    }, 300);
-  };
+// Drag-drop proof
+const pb=document.getElementById('proof-upload-box');
+pb.addEventListener('dragover',e=>{e.preventDefault();pb.classList.add('drag');});
+pb.addEventListener('dragleave',()=>pb.classList.remove('drag'));
+pb.addEventListener('drop',e=>{e.preventDefault();pb.classList.remove('drag');const file=e.dataTransfer.files[0];if(file?.type.startsWith('image/')){selectedProofFile=file;const r=new FileReader();r.onload=ev=>{document.getElementById('proof-preview').src=ev.target.result;document.getElementById('proof-preview-wrap').classList.add('show');document.getElementById('proof-upload-box').classList.add('has-file');document.getElementById('proof-label-text').innerHTML='<strong style="color:var(--verified)">✅ Proof uploaded!</strong> Click to replace.';};r.readAsDataURL(file);}});
 
-  // ── HELPERS ───────────────────────────────────────
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-  window.showToast = showToast;
-  function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function timeAgo(d) {
-    const s = Math.floor((Date.now() - d) / 1000);
-    if (s < 60) return 'just now';
-    if (s < 3600) return Math.floor(s/60) + 'm ago';
-    if (s < 86400) return Math.floor(s/3600) + 'h ago';
-    return Math.floor(s/86400) + 'd ago';
-  }
-
-  // Drag & drop
-  const uploadBox = document.getElementById('upload-box');
-  uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.classList.add('drag'); });
-  uploadBox.addEventListener('dragleave', () => uploadBox.classList.remove('drag'));
-  uploadBox.addEventListener('drop', e => {
-    e.preventDefault(); uploadBox.classList.remove('drag');
-    const file = e.dataTransfer.files[0];
-    if (file?.type.startsWith('image/')) {
-      selectedFile = file;
-      const reader = new FileReader();
-      reader.onload = ev => { document.getElementById('upload-preview').src = ev.target.result; document.getElementById('upload-form').classList.add('show'); };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  document.getElementById('donation-dialog').addEventListener('click', function(e) { if (e.target === this) closeDonationDialog(); });
-  document.getElementById('qr-dialog').addEventListener('click', function(e) { if (e.target === this) closeQrDialog(); });
+// Backdrop close
+['donation-dialog','gift-success-dialog'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 </script>
 
 <script>
-  // Tab switching — handles both desktop and mobile
-  function showTab(tab, el) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + tab).classList.add('active');
-    // desktop tabs
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    const desktopBtn = document.querySelector(`.tab-btn[onclick*="'${tab}'"]`);
-    if (desktopBtn) desktopBtn.classList.add('active');
-    // mobile tabs
-    document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
-    if (el && el.classList.contains('mobile-nav-btn')) el.classList.add('active');
-    else document.getElementById('mob-' + tab)?.classList.add('active');
-  }
-
-  function syncDesktopTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    const btn = document.querySelector(`.tab-btn[onclick*="'${tab}'"]`);
-    if (btn) btn.classList.add('active');
-  }
+// Tab switcher (plain script, not module)
+function showTab(tab){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+tab);
+  if(pg) pg.classList.add('active');
+  // Desktop
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  // Mobile
+  document.querySelectorAll('.mob-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+}
 </script>
 </body>
 </html>
